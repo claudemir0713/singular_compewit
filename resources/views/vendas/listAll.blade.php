@@ -38,10 +38,20 @@
                         Até:
                         <input class="form-control form-control-sm" type="date" id="dtF" name="dtF" value="{{ array_key_exists('dtF',$dateForm) ? $dateForm['dtF'] : date('Y-m-d') }}">
                     </div>
+                    <div class="form-group col-md-2">
+                        Gerar:
+                        <select class="form-control" id="gerar" name="gerar">
+                            <option value="Tela">Tela</option>
+                            <option value="Excel">Excel</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <br>
+                        <button class="btn btn-primary  btn-sm" type="submit" >
+                            <span class="fas fa-play font-12"></span> <span class="font-12">Filtrar</span>
+                        </button>
+                    </div>
                 </div>
-                <button class="btn btn-primary  btn-sm" type="submit" >
-                    <span class="fas fa-play font-12"></span> <span class="font-12">Filtrar</span>
-                </button>
             </form >
         </div>
     </div>

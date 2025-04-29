@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\singular;
 
+use App\Exports\vendas as ExportsVendas;
+use App\Exports\vendasExcel;
 use App\Helpers\Vendas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class vendasController extends Controller
 {
@@ -20,6 +23,13 @@ class vendasController extends Controller
         $nf         = $request->nf;
 
         $vendas = Vendas::vendas($dataI,$dataF,$cliente,$vendedor,$nf);
+
+        if($request->gerar=='Excel'){
+            $nomeArquivo = 'vendas.xls';
+            return Excel::download(new vendasExcel($vendas,$dateForm), $nomeArquivo);
+        };
+
         return view('vendas.listAll',compact('vendas','dateForm'));
+
     }
 }
