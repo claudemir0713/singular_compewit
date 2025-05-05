@@ -62,18 +62,6 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
-        'Decorbras' => [
-            'driver'   => 'firebird',
-            'host'     => '170.150.0.187',
-            'port'     => '3050',
-            'database' => 'C:\Singular\DECORBRAS\BD\DECORBRAS.SIN',
-            'username' => 'SYSDBA',
-            'password' => 'godislive2000',
-            'charset'  => 'utf8',
-            'role'     => null,
-        ],
-
         'Compewit' => [
             'driver'   => 'firebird',
             'host'     => 'Server',
@@ -114,9 +102,9 @@ return [
 
         'totvs' => [
             'driver' => 'sqlsrv',
-            'host' => '170.150.0.187\SQLEXPRESS',
+            'host' => 'WIN-7MO8BMKTQVO\SQLEXPRESS',
             'port' => '1433',
-            'database' => 'totvs',
+            'database' => 'firsttop',
             'username' => 'sa',
             'password' => 'Sisinfo@123',
             'charset' => 'utf8',

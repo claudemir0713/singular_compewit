@@ -67,7 +67,7 @@
                 <th width="5%">SEQ</th>
                 <th width="25%">CLIENTE</th>
                 <th width="5%">EMISSÃO</th>
-                <th width="5%">PGTO</th>
+                <th width="5%">VCTO</th>
                 <th width="5%">VLR</th>
                 <th width="6%">BASE</th>
                 <th width="5%">%</th>
@@ -124,7 +124,7 @@
                     <td align="center">{{$item->CON_SEQUENCIA}}</td>
                     <td>{{$item->CLIENTE}}</td>
                     <td align="center">{{date('d/m/Y',strtotime($item->CON_DT_INCLUSAO))}}</td>
-                    <td align="center">{{date('d/m/Y',strtotime($item->DT_PAGAMENTO))}}</td>
+                    <td align="center">{{date('d/m/Y',strtotime($item->DT_VENCIMENTO))}}</td>
                     <td align="right"><span class="valor_original{{$item->CON_CODIGO}}">{{number_format($VLR_PAGO,2,',','.')}}</span></td>
                     <td align="right"><span class="valor_pago{{$item->CON_CODIGO}}">{{number_format($BC_COMISSAO,2,',','.')}}</span></td>
                     <td align="right"><span class="perc_comissao{{$item->CON_CODIGO}}">{{number_format($item->CONC_PERC_COMISSAO,2,',','.')}}</span></td>

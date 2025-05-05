@@ -101,8 +101,7 @@ class Comissao {
     public static function comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela) {
         $cliente    = " AND CLI.PART_NOME LIKE '$cliente%'";
         $vendedor   = " AND REP.PART_NOME LIKE '%$vendedor%'";
-        $data       = " AND CCP_DT_PAGAMENTO BETWEEN '$dataI' AND '$dataF'";
-        $dtCheq     = " AND CHEQUE.CHQ_BOM_PARA BETWEEN '$dataI' AND '$dataF'";
+        $data       = " AND CON_DT_VENCIMENTO BETWEEN '$dataI' AND '$dataF'";
         if($parcela){
             $parcela    = " AND CON_SEQUENCIA = $parcela";
         };
@@ -111,7 +110,6 @@ class Comissao {
             $cliente    = '';
             $vendedor   = '';
             $data       = '';
-            $dtCheq     = '';
             $nf         = " AND FIN_CONTAS.CON_NUMERO LIKE '$nf%'";
         }else{
             $nf         = '';
@@ -144,7 +142,7 @@ class Comissao {
                     ,FIN_CONTAS.CON_SEQUENCIA
                     ,''                                     AS NR_CHEQUE
                     ,FIN_CONTAS.CON_DT_INCLUSAO
-                    ,FIN_CONTAS.CON_DT_VENCIMENTO
+                    ,FIN_CONTAS.CON_DT_VENCIMENTO           AS DT_VENCIMENTO
                     ,CCP_DT_PAGAMENTO						AS DT_PAGAMENTO
                     ,CCP_VALOR								AS VLR_PAGO
                     ,FIN_CONTAS.CON_VALOR_ORIGINAL
@@ -154,79 +152,21 @@ class Comissao {
                     ,FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
                     ,FIN_CONTAS.CON_ORIGEM
                     ,'DPL'									AS TIPO_BAIXA
-
-
                 FROM FIN_CONTAS
                 LEFT JOIN FIN_CONTAS_PAGAMENTOS ON FIN_CONTAS_PAGAMENTOS.CON_CODIGO = FIN_CONTAS.CON_CODIGO
                 LEFT JOIN FIN_CONTAS_COMISSAO 	ON FIN_CONTAS_COMISSAO.CON_CODIGO 	= FIN_CONTAS.CON_CODIGO
                 LEFT JOIN PARTICIPANTE AS REP 	ON  REP.PART_REPRESENTANTE_CODIGO 	= FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
                 LEFT JOIN PARTICIPANTE AS CLI 	ON CLI.PART_CLIENTE_CODIGO			= FIN_CONTAS.ENT_CODIGO
                 LEFT JOIN PARTICIPANTE AS FORN 	ON FORN.PART_FORNECEDOR_CODIGO		= FIN_CONTAS.ENT_CODIGO
-                LEFT JOIN FIN_CONTAS_CHEQUES 	ON FIN_CONTAS_CHEQUES.CCP_CODIGO	= FIN_CONTAS_PAGAMENTOS.CCP_CODIGO
 
                 WHERE 1=1
                 AND FIN_CONTAS.CON_TIPO = 0
-                AND FIN_CONTAS_CHEQUES.CON_CODIGO IS NULL
-                AND CCP_DT_PAGAMENTO > '1900-01-01'
                 AND CON_ORIGEM NOT IN ('T')
                 $data
                 $cliente
                 $vendedor
                 $nf
                 $parcela
-
-                UNION ALL
-                    SELECT
-                        REP.PART_NOME 							AS VENDEDOR
-                        ,COALESCE(CLI.PART_NOME,FORN.PART_NOME)	AS CLIENTE
-                        ,LIST(FIN_CONTAS.CON_CODIGO,',')		AS CON_CODIGO
-                        ,'CH: '||CHQ_CHEQUE                     AS CON_NUMERO
-                        ,1										AS CON_SEQUENCIA
-                        ,LIST(CON_NUMERO||'-'||CON_SEQUENCIA,', ') AS NR_CHEQUE
-                        ,CHEQUE.CHQ_DT_EMISSAO	                AS CON_DT_INCLUSAO
-                        ,LIST(FIN_CONTAS.CON_DT_VENCIMENTO,',')	AS CON_DT_VENCIMENTO
-                        ,CHEQUE.CHQ_BOM_PARA  					AS DT_PAGAMENTO
-                        ,CHQ_VALOR        				        AS VLR_PAGO
-                        ,CHQ_VALOR								AS CON_VALOR_ORIGINAL
-                        ,CHQ_VALOR								AS CON_BC_COMISSAO
-                        ,FIN_CONTAS.PART_CODIGO
-                        ,FIN_CONTAS_COMISSAO.CONC_PERC_COMISSAO
-                        ,FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
-                        ,FIN_CONTAS.CON_ORIGEM
-                        ,'CHQ'									AS TIPO_BAIXA
-
-                    FROM CHEQUE
-                    LEFT JOIN FIN_CONTAS_CHEQUES ON FIN_CONTAS_CHEQUES.CHQ_CODIGO = CHEQUE.CHQ_CODIGO
-                    LEFT JOIN FIN_CONTAS ON FIN_CONTAS.CON_CODIGO = FIN_CONTAS_CHEQUES.CON_CODIGO
-                    LEFT JOIN FIN_CONTAS_COMISSAO 	ON FIN_CONTAS_COMISSAO.CON_CODIGO 	= FIN_CONTAS.CON_CODIGO
-                    LEFT JOIN PARTICIPANTE AS REP 	ON  REP.PART_REPRESENTANTE_CODIGO 	= FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
-                    LEFT JOIN PARTICIPANTE AS CLI 	ON CLI.PART_CLIENTE_CODIGO			= FIN_CONTAS.ENT_CODIGO
-                    LEFT JOIN PARTICIPANTE AS FORN 	ON FORN.PART_FORNECEDOR_CODIGO		= FIN_CONTAS.ENT_CODIGO
-
-                    WHERE 1=1
-                    AND FIN_CONTAS.CON_TIPO = 0
-                    AND CHQ_TERC = 0
-                    AND FIN_CONTAS.CON_CODIGO IS NOT NULL
-                    $dtCheq
-                    $cliente
-                    $vendedor
-                    $nf
-                    $parcela
-                    GROUP BY
-                        REP.PART_NOME
-                        ,COALESCE(CLI.PART_NOME,FORN.PART_NOME)
-                        ,'CH: '||CHQ_CHEQUE
-                        ,CHQ_CHEQUE
-                        ,CHEQUE.CHQ_BOM_PARA
-                        ,CHQ_VALOR
-                        ,CHQ_VALOR
-                        ,CHQ_VALOR
-                        ,FIN_CONTAS.PART_CODIGO
-                        ,FIN_CONTAS_COMISSAO.CONC_PERC_COMISSAO
-                        ,FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
-                        ,FIN_CONTAS.CON_ORIGEM
-                        ,CHQ_DT_EMISSAO
-
             )COMISSAO
             ORDER BY
                 VENDEDOR

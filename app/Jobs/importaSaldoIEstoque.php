@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\PLANNER_ESTOQUE_BLOCO_K;
 use App\Models\sigular_estoque_bloco_k;
+use App\Models\singular_estoque_bloco_k;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,7 +36,15 @@ class importaSaldoIEstoque implements ShouldQueue
     {
         $sql = "
                 SELECT
-                        LTRIM(RTRIM(SB9.B9_CODPROD)) 	 AS COD_PROD
+                        CASE
+                            WHEN LEFT(B9_CODPROD,3) = '*MP'		THEN concat('91', substring(B9_CODPROD,4,7))
+                            WHEN LEFT(B9_CODPROD,2) = 'IM' 		THEN concat('92', substring(B9_CODPROD,3,7))
+                            WHEN LEFT(B9_CODPROD,2) = 'MC' 		THEN concat('93', substring(B9_CODPROD,3,7))
+                            WHEN LEFT(B9_CODPROD,2) = 'MP' 		THEN concat('94', substring(B9_CODPROD,3,7))
+                            WHEN LEFT(B9_CODPROD,5) = 'PROC-' 	THEN concat('95',substring(B9_CODPROD,6,7))
+                            WHEN LEFT(B9_CODPROD,1) = 'S' 		THEN concat('96',substring(B9_CODPROD,2,7))
+                            ELSE B9_CODPROD
+						END  				AS PRD_CODIGO
                         ,LTRIM(RTRIM(SB1.B1_DESCRI)) AS DESC_PROD
                         ,SUM(SB9.B9_QINI)			 AS QTD_EI
                         ,SUM(SB9.B9_VINI1)			 AS TOT_EI
@@ -49,7 +58,8 @@ class importaSaldoIEstoque implements ShouldQueue
                     AND sb1.B1_TIPO IN ('2','3')
                     AND SB9.B9_LOCAL = '01'
                     AND YEAR(SB9.B9_DATA) = 2025
-                    AND MONTH(SB9.B9_DATA) = 2
+                    AND MONTH(SB9.B9_DATA) = 3
+                    AND SB9.B9_QINI >0
                     AND DAY(SB9.B9_DATA) = (SELECT DAY(MAX(SB91.B9_DATA))
                                             FROM SB9 SB91
                                             WHERE YEAR(SB91.B9_DATA) = YEAR(SB9.B9_DATA) AND MONTH(SB91.B9_DATA) = MONTH(SB9.B9_DATA)
@@ -61,30 +71,20 @@ class importaSaldoIEstoque implements ShouldQueue
         ";
         $est = DB::connection('totvs')->select($sql);
         $x = 0;
-        $BLOCO_K = PLANNER_ESTOQUE_BLOCO_K::first();
-        $BLOCO_K->PRD_CODIGO = 1;
-        $BLOCO_K->DESC_PROD = 'teste';
-        $BLOCO_K->QTD = '2';
-        $BLOCO_K->VALOR = '3';
-        $BLOCO_K->DATA = date('Y-m-d');
-        $BLOCO_K->save();
-        dd($BLOCO_K);
         foreach($est as $item){
             $x++;
             try{
-                $estoque = new PLANNER_ESTOQUE_BLOCO_K([
-                    'PRD_CODIGO'  => $item->COD_PROD
-                    , 'PRD_DESCRI'  => $item->DESC_PROD
-                    , 'QTD'         => number_format($item->QTD_EI,2,'.','')
-                    , 'VALOR'       => number_format($item->TOT_EI,2,'.','')
-                    , 'DATA'        => $item->DT_FECHAMENTO
+                $estoque = new singular_estoque_bloco_k([
+                    'prd_codigo'  => $item->PRD_CODIGO
+                    , 'qtd'         => number_format($item->QTD_EI,2,'.','')
+                    , 'valor'       => number_format($item->TOT_EI,2,'.','')
+                    , 'data'        => $item->DT_FECHAMENTO
                 ]);
-                dd($estoque);
-                // $estoque->save();
+                $estoque->save();
             }catch(\Exception $e){
                 dd($e);
             }
-            print_r($x.'-'.$item->COD_PROD.'-'.number_format($item->QTD_EI,2,'.','').'-'.number_format($item->TOT_EI,2,'.','')."\n");
+            print_r($x.'-'.$item->PRD_CODIGO.'-'.number_format($item->QTD_EI,2,'.','').'-'.number_format($item->TOT_EI,2,'.','')."\n");
         }
 
     }

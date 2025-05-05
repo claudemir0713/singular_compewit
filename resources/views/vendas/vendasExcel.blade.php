@@ -31,7 +31,7 @@
                 <td align="right">{{ $item->ACRESCIMO }}</td>
                 <td align="right">{{ $item->FRETE }}</td>
                 <td align="right">{{ $item->IPI }}</td>
-                <td align="right">{{ $item->FAT_LIQUIDO }}</td>
+                <td align="right">{{ $item->FAT_BRUTO+$item->FAT_BRUTO_2+$item->IPI }}</td>
             </tr>
         @endforeach
     </tbody>

@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->job(new importaObCli)->everyMinute()->between('01:00', '23:59');
         // $schedule->job(new importaSaldoIEstoque)->everyMinute()->between('01:00', '23:59');
-        $schedule->job(new atualizaProdutoMysql)->everyMinute()->between('06:00', '23:59');
+        // $schedule->job(new atualizaProdutoMysql)->everyMinute()->between('06:00', '23:59');
     }
 
     /**

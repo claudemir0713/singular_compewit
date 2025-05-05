@@ -32,32 +32,34 @@ class atualizaProdutoMysql implements ShouldQueue
      */
     public function handle()
     {
-        // $sql = "
-        //     SELECT
-        //         PRD_CODIGO
-        //         ,PRD_DESCRICAO
-        //         ,UM_CODIGO
-        //         ,PRD_TIPO_PRODUTO
-        //         ,UM_CODIGO
-        //         ,PRD_TIPO_PRODUTO
-        //         ,NCM_CODIGO
-        //     FROM PRODUTOS
-        // ";
-        // $Produto_singular = DB::connection('Decorbras')->select($sql);
-        $sql="
+        $sql = "
             SELECT
-                CAST(LTRIM(RTRIM(B1_CODPROD)) AS INTEGER)				AS PRD_CODIGO
-                ,LTRIM(RTRIM(B1_DESCRI)) 				AS PRD_DESCRICAO
-                ,LTRIM(RTRIM(B1_CODGRP)) 				AS UM_CODIGO
-                ,LTRIM(RTRIM(B1_TIPO)) 					AS PRD_TIPO_PRODUTO
-                ,LTRIM(RTRIM(B1_CODUM)) 				AS UM_CODIGO
-                ,LTRIM(RTRIM(B1_NCM)) 					AS NCM_CODIGO
-            FROM SB1
-            WHERE B1_FILIAL = '01'
-            AND D_E_L_E_T_ <> '*'
-            AND LTRIM(RTRIM(B1_TIPO)) NOT IN ('6')
+                PRD_CODIGO
+                ,PRD_DESCRICAO
+                ,UM_CODIGO
+                ,PRD_TIPO_PRODUTO
+                ,UM_CODIGO
+                ,PRD_TIPO_PRODUTO
+                ,NCM_CODIGO
+            FROM PRODUTOS
         ";
-        $Produto_singular = DB::connection('totvs')->select($sql);
+        $Produto_singular = DB::connection('Compewit')->select($sql);
+
+        // $sql="
+        //     SELECT
+        //         CAST(LTRIM(RTRIM(B1_CODPROD)) AS INTEGER)				AS PRD_CODIGO
+        //         ,LTRIM(RTRIM(B1_DESCRI)) 				AS PRD_DESCRICAO
+        //         ,LTRIM(RTRIM(B1_CODGRP)) 				AS UM_CODIGO
+        //         ,LTRIM(RTRIM(B1_TIPO)) 					AS PRD_TIPO_PRODUTO
+        //         ,LTRIM(RTRIM(B1_CODUM)) 				AS UM_CODIGO
+        //         ,LTRIM(RTRIM(B1_NCM)) 					AS NCM_CODIGO
+        //     FROM SB1
+        //     WHERE B1_FILIAL = '01'
+        //     AND D_E_L_E_T_ <> '*'
+        //     AND LTRIM(RTRIM(B1_TIPO)) NOT IN ('6')
+        // ";
+        // $Produto_singular = DB::connection('totvs')->select($sql);
+
 
         $x = 0;
         produto_mysql::truncate();
