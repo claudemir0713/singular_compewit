@@ -97,8 +97,8 @@
             @endif
 
                 @php
-                    $VLR_PAGO = $item->VLR_PAGO ;
-                    $BC_COMISSAO =  $VLR_PAGO *($item->CON_BC_COMISSAO / $item->CON_VALOR_ORIGINAL);
+                    $VLR_PAGO = $item->CON_VALOR_ORIGINAL ;
+                    $BC_COMISSAO =  $item->CON_BC_COMISSAO ;
                     if(trim($item->TIPO_BAIXA) =='CHQ'){
                         $CON_NR = $item->CON_NUMERO."\n";
                     }else{
