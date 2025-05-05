@@ -14,15 +14,17 @@
     <div class="row">
         <div class="form-group col-md-2">
             Série:
-            <input class="form-control form-control-sm" type="text" id="serie" name="serie" value="">
+            <input class="form-control form-control" type="text" id="serie" name="serie" value="">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
             Documento:
-            <input class="form-control form-control-sm" type="text" id="documento" name="documento" value="">
+            <input class="form-control form-control" type="text" id="documento" name="documento" value="">
+        </div>
+        <div class="form-group col-md-2">
+            <button class="btn btn-primary font-10" type="button" >
+                <span class="fas fa-play font-12"></span> <span class="font-12">Importar</span>
+            </button>
         </div>
     </div>
-    <button class="btn btn-primary btn-sm font-10" type="button" >
-        <span class="fas fa-play font-12"></span> <span class="font-12">Listar</span>
-    </button>
 
 @endsection
