@@ -21,7 +21,8 @@
             <input class="form-control form-control" type="text" id="documento" name="documento" value="">
         </div>
         <div class="form-group col-md-2">
-            <button class="btn btn-primary font-10" type="button" >
+            <br>
+            <button class="btn btn-primary font-10" id="btn-importaRecTotvs" type="button" >
                 <span class="fas fa-play font-12"></span> <span class="font-12">Importar</span>
             </button>
         </div>

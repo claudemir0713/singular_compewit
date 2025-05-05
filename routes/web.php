@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('comissao/comissaoPagar',[comissaoController::class,'comissaoPagar'])->name('comissao.comissaoPagar');
         Route::get('comissao/imprimirComissaoPagar',[comissaoController::class,'imprimirComissaoPagar'])->name('comissao.imprimirComissaoPagar');
 
+        Route::get('comissao/listaRecTotvs',[comissaoController::class,'listaRecTotvs'])->name('comissao.listaRecTotvs');
         Route::get('comissao/importaRecTotvs',[comissaoController::class,'importaRecTotvs'])->name('comissao.importaRecTotvs');
     });
     /********************************** Pagar ***************************************************************/

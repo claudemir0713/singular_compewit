@@ -261,25 +261,56 @@ $(document).ready(function () {
         window.open(route, '_blank');
     })
 
-    /***************************btnExportaContabil******************************************/
+    /***************************btnExportaContabil****************************************/
     $(document).on('click','.btnExportaContabil',function(){
         btnExportaContabil();
     })
 
-    /***************************btnGeraSped******************************************/
+    /***************************btnGeraSped***********************************************/
     $(document).on('click','.btnGeraSped',function(){
         btnGeraSped();
     })
 
-    /***************************btnFechaEstoque******************************************/
+    /***************************btnFechaEstoque*******************************************/
     $(document).on('click','.btnFechaEstoque',function(){
         btnFechaEstoque();
     })
 
-    /***************************btnAtualizaEstoque******************************************/
+    /***************************btnAtualizaEstoque****************************************/
     $(document).on('click','.btnAtualizaEstoque',function(){
         btnFechaEstoque();
     })
 
+
+    /**************************importaRecTotvs********************************************/
+    $(document).on('click','#btn-importaRecTotvs',function(){
+        let serie       = $(document).find('#serie').val();
+        let documento   = $(document).find('#documento').val();
+        let route       = '/comissao/importaRecTotvs';
+        let dados = {
+            'serie'       : serie,
+            'documento'   : documento
+        };
+        $.ajax({
+            data: dados,
+            type: 'post',
+            dataType: 'JSON',
+            url: url + route,
+            beforeSend: function(){
+                Swal({
+                    title: 'Aguarde!',
+                    type: 'warning',
+                    timer:2000
+                })
+            },
+            success:function(result){
+
+            },
+            complete:function(){
+                Swal.close();
+            }
+        })
+
+    })
 
 })

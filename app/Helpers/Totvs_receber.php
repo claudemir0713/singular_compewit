@@ -38,8 +38,8 @@ class Vendas {
                     ,0 												AS CON_CARENCIA_MULTA
                     ,cast(cast(E1_OBSERV as varbinary(max)) as varchar(max)) AS CON_OBS
                     ,'A' 											AS CON_ORIGEM
-                    ,0 DOC_NUMERO
-                    ,0 DOC_NUMERO_ORIGEM
+                    ,0                                              AS DOC_NUMERO
+                    ,0                                              AS DOC_NUMERO_ORIGEM
                     ,convert(CHAR(10),CONVERT(DATE,E1_EMISSAO),126) AS CON_DT_COMPETENCIA
 
                     ,CASE
