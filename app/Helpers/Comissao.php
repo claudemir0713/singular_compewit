@@ -144,8 +144,8 @@ class Comissao {
                     ,''                                     AS NR_CHEQUE
                     ,FIN_CONTAS.CON_DT_INCLUSAO
                     ,FIN_CONTAS.CON_DT_VENCIMENTO           AS DT_VENCIMENTO
-                    ,CCP_DT_PAGAMENTO						AS DT_PAGAMENTO
-                    ,CCP_VALOR								AS VLR_PAGO
+                    ,''						                AS DT_PAGAMENTO
+                    ,0								        AS VLR_PAGO
                     ,FIN_CONTAS.CON_VALOR_ORIGINAL
                     ,FIN_CONTAS.CON_BC_COMISSAO
                     ,FIN_CONTAS.PART_CODIGO
@@ -154,7 +154,6 @@ class Comissao {
                     ,FIN_CONTAS.CON_ORIGEM
                     ,'DPL'									AS TIPO_BAIXA
                 FROM FIN_CONTAS
-                LEFT JOIN FIN_CONTAS_PAGAMENTOS ON FIN_CONTAS_PAGAMENTOS.CON_CODIGO = FIN_CONTAS.CON_CODIGO
                 LEFT JOIN FIN_CONTAS_COMISSAO 	ON FIN_CONTAS_COMISSAO.CON_CODIGO 	= FIN_CONTAS.CON_CODIGO
                 LEFT JOIN PARTICIPANTE AS REP 	ON  REP.PART_REPRESENTANTE_CODIGO 	= FIN_CONTAS_COMISSAO.PART_REPRESENTANTE_CODIGO
                 LEFT JOIN PARTICIPANTE AS CLI 	ON CLI.PART_CLIENTE_CODIGO			= FIN_CONTAS.ENT_CODIGO
