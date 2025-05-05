@@ -48,6 +48,7 @@ class comissaoController extends Controller
         if(!$dataI){$dataI = date('Y-m-d');};
         if(!$dataF){$dataF = date('Y-m-d');};
 
+
         $vendedor   = strtoupper($request->vendedor);
         $cliente    = strtoupper($request->cliente);
         $ordenar    = $request->ordenar;
