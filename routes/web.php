@@ -81,8 +81,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('comissao',[comissaoController::class,'listAll'])->name('comissao.listAll');
         Route::post('comissao/alteraBase',[comissaoController::class,'alteraBase'])->name('comissao.alteraBase');
         Route::get('comissao/comissaoPagar',[comissaoController::class,'comissaoPagar'])->name('comissao.comissaoPagar');
-        Route::get('comissao/imprimirComissaoPagar',[comissaoController::class,'imprimirComissaoPagar'])->name('receber.imprimirComissaoPagar');
+        Route::get('comissao/imprimirComissaoPagar',[comissaoController::class,'imprimirComissaoPagar'])->name('comissao.imprimirComissaoPagar');
 
+        Route::get('comissao/importaRecTotvs',[comissaoController::class,'importaRecTotvs'])->name('comissao.importaRecTotvs');
     });
     /********************************** Pagar ***************************************************************/
     Route::group(['namespace' => 'pagar'], function () {

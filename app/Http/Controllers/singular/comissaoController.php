@@ -105,4 +105,10 @@ class comissaoController extends Controller
         exit();
     }
 
+    public function importaRecTotvs(Request $request)
+    {
+        dd($request);
+        return view('comissao.importaRecTotvs');
+    }
+
 }
