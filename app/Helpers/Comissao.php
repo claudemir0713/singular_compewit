@@ -123,7 +123,7 @@ class Comissao {
                 , CON_SEQUENCIA
                 , NR_CHEQUE
                 , CON_DT_INCLUSAO
-                , CON_DT_VENCIMENTO
+                , DT_VENCIMENTO
                 , DT_PAGAMENTO
                 , VLR_PAGO
                 , CON_VALOR_ORIGINAL
