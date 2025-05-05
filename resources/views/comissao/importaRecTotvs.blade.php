@@ -11,23 +11,18 @@
         </tr>
     </table><hr>
 
-    <div class="row" >
-        <form method="get" action="">
-            @csrf
-            <div class="row">
-                <div class="form-group col-md-2">
-                    Série:
-                    <input class="form-control form-control-sm" type="text" id="serie" name="serie" value="">
-                </div>
-                <div class="form-group col-md-3">
-                    Documento:
-                    <input class="form-control form-control-sm" type="text" id="documento" name="documento" value="">
-                </div>
-            </div>
-            <button class="btn btn-primary btn-sm font-10" type="button" >
-                <span class="fas fa-play font-12"></span> <span class="font-12">Listar</span>
-            </button>
-        </form >
+    <div class="row">
+        <div class="form-group col-md-2">
+            Série:
+            <input class="form-control form-control-sm" type="text" id="serie" name="serie" value="">
+        </div>
+        <div class="form-group col-md-3">
+            Documento:
+            <input class="form-control form-control-sm" type="text" id="documento" name="documento" value="">
+        </div>
     </div>
+    <button class="btn btn-primary btn-sm font-10" type="button" >
+        <span class="fas fa-play font-12"></span> <span class="font-12">Listar</span>
+    </button>
 
 @endsection
