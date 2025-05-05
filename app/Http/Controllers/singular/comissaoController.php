@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\singular;
 
 use App\Helpers\Comissao;
+use App\Helpers\Helper;
+use App\Helpers\Totvs_receber;
 use App\Http\Controllers\Controller;
 use App\Models\FIN_CONTAS;
 use Illuminate\Http\Request;
@@ -112,7 +114,11 @@ class comissaoController extends Controller
 
     public function importaRecTotvs(Request $request)
     {
-        dd($request);
+        $serie  = $request->serie;
+        $doc    = $request->documento;
+
+        $return = Totvs_receber::Totvs_receber($serie,$doc);
+        dd($return);
     }
 
 }

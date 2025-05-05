@@ -5,7 +5,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class Vendas {
+class Totvs_receber {
     public static function Totvs_receber($serie,$doc) {
         $sql = "
                 SELECT
