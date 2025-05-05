@@ -256,7 +256,8 @@ $(document).ready(function () {
         let tipo        = ($(document).find('#tipo').val())     ? $(document).find('#tipo').val()       : ''
         let status      = ''
         let nf          = ($(document).find('#nf').val())       ? $(document).find('#nf').val()         : ''
-        let route       = url+'/comissao/imprimirComissaoPagar?dtI='+dataI+'&dtF='+dataF+'&cliente='+cliente+'&vendedor='+vendedor+'&nf='+nf;
+        let ordenar     = ($(document).find('#ordenar').val())  ? $(document).find('#ordenar').val()    : ''
+        let route       = url+'/comissao/imprimirComissaoPagar?dtI='+dataI+'&dtF='+dataF+'&cliente='+cliente+'&vendedor='+vendedor+'&nf='+nf+'&orndenar='+ordenar;
         window.open(route, '_blank');
     })
 

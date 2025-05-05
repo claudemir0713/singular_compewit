@@ -68,6 +68,7 @@ class comissaoController extends Controller
         $vendedor   = strtoupper($request->vendedor);
         $cliente    = strtoupper($request->cliente);
         $ordenar    = $request->ordenar;
+        dd($ordenar);
 
         $comissoes = Comissao::comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela,$ordenar);
         $fileName = 'Comissão pagar.pdf';
