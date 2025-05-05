@@ -112,7 +112,7 @@ class comissaoController extends Controller
 
     public function importaRecTotvs(Request $request)
     {
-        dd($request);
+        // dd($request);
     }
 
 }
