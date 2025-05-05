@@ -164,6 +164,7 @@ class comissaoController extends Controller
                     , 'NOT_DATA_HORA_ALTER_SITUACAO'=> $item->NOT_DATA_HORA_ALTER_SITUACAO
                 ]);
                 // $FIN_CONTAS->save();
+                dd($FIN_CONTAS);
 
                 $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
                     'CONC_CODIGO'                 => $CONC_CODIGO
