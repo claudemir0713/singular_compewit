@@ -53,10 +53,10 @@
                     <div class="form-group col-md-3">
                         Ordernar:
                         <select class="form-control" id="ordenar" name="ordenar">
-                            <option value="VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"   {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Vencimento</option>
-                            <option value="VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA" {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Inclusão</option>
-                            <option value="VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"         {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Cliente</option>
-                            <option value="VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"      {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Documento</option>
+                            <option value="VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"   {{ array_key_exists('ordenar',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Vencimento</option>
+                            <option value="VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA" {{ array_key_exists('ordenar',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Inclusão</option>
+                            <option value="VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"         {{ array_key_exists('ordenar',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Cliente</option>
+                            <option value="VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"      {{ array_key_exists('ordenar',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Documento</option>
                         </select>
                     </div>
                 </div>
