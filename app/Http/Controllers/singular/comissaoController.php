@@ -7,7 +7,9 @@ use App\Helpers\Helper;
 use App\Helpers\Totvs_receber;
 use App\Http\Controllers\Controller;
 use App\Models\FIN_CONTAS;
+use App\Models\FIN_CONTAS_COMISSAO;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class comissaoController extends Controller
 {
@@ -118,7 +120,68 @@ class comissaoController extends Controller
         $doc    = $request->documento;
 
         $return = Totvs_receber::Totvs_receber($serie,$doc);
-        dd($return);
+
+        foreach($return as $item){
+            $sql = "SELECT max(DOC_NUMERO)+1 AS DOC_NUMERO  FROM DOCUMENTO";
+            $DOC_NUMERO = DB::connection(env('APP_NAME'))->select($sql);
+
+            $sql = "SELECT max(CON_CODIGO)+1 AS CON_CODIGO  FROM FIN_CONTAS";
+            $CON_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
+
+            $sql = "SELECT max(CONC_CODIGO)+1 AS CONC_CODIGO  FROM FIN_CONTAS_COMISSAO ";
+            $CONC_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
+
+            try{
+                $FIN_CONTAS = new FIN_CONTAS([
+                    'CON_CODIGO'                  => $CON_CODIGO
+                    , 'CON_TIPO'                  => $item->CON_TIPO
+                    , 'CON_NUMERO'                => $item->CON_NUMERO
+                    , 'CON_SEQUENCIA'             => $item->CON_SEQUENCIA
+                    , 'CON_DT_INCLUSAO'           => $item->CON_DT_INCLUSAO
+                    , 'CON_DT_VENCIMENTO'         => $item->CON_DT_VENCIMENTO
+                    , 'ENT_CODIGO'                => $item->ENT_CODIGO
+                    , 'ENT_TIPO'                  => $item->ENT_TIPO
+                    , 'CON_VALOR_ORIGINAL'        => $item->CON_VALOR_ORIGINAL
+                    , 'CON_VALOR_JUROS'           => $item->CON_VALOR_JUROS
+                    , 'CON_VALOR_MULTA'           => $item->CON_VALOR_MULTA
+                    , 'CON_VALOR_OUTRASDESPESAS'  => $item->CON_VALOR_OUTRASDESPESAS
+                    , 'CON_VALOR_TOTAL_PAGO'      => $item->CON_VALOR_TOTAL_PAGO
+                    , 'CON_VALOR_CORRIGIDO'       => $item->CON_VALOR_CORRIGIDO
+                    , 'CON_SITUACAO'              => $item->CON_SITUACAO
+                    , 'CON_PREVISAO'              => $item->CON_PREVISAO
+                    , 'CON_TIPO_PAGAMENTO'        => $item->CON_TIPO_PAGAMENTO
+                    , 'CON_TX_JUROS_MORA'         => $item->CON_TX_JUROS_MORA
+                    , 'CON_CARENCIA_JUROS_MORA'   => $item->CON_CARENCIA_JUROS_MORA
+                    , 'CON_TX_MULTA'              => $item->CON_TX_MULTA
+                    , 'CON_CARENCIA_MULTA'        => $item->CON_CARENCIA_MULTA
+                    , 'CON_OBS'                   => $item->CON_OBS
+                    , 'CON_ORIGEM'                => $item->CON_ORIGEM
+                    , 'DOC_NUMERO'                => $DOC_NUMERO
+                    , 'DOC_NUMERO_ORIGEM'         => $DOC_NUMERO
+                    , 'CON_DT_COMPETENCIA'        => $item->CON_DT_COMPETENCIA
+                    , 'PART_CODIGO'               => $item->PART_CODIGO
+                    , 'CON_BC_COMISSAO'           => $item->CON_BC_COMISSAO
+                    , 'NOT_DATA_HORA_ALTER_SITUACAO'=> $item->NOT_DATA_HORA_ALTER_SITUACAO
+                ]);
+                // $FIN_CONTAS->save();
+
+                $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
+                    'CONC_CODIGO'                 => $CONC_CODIGO
+                    , 'CON_CODIGO'                => $CON_CODIGO
+                    , 'USU_COD_VENDEDOR'          => 0
+                    , 'PART_REPRESENTANTE_CODIGO' => $item->PART_CODIGO
+                    , 'CONC_PERC_COMISSAO'        => $item->PERC_COMIS
+                ]);
+                // $FIN_CONTAS_COMISSAO->save();
+
+            }catch(\Exception $e){
+
+            }
+
+            print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
+
+        }
+
     }
 
 }
