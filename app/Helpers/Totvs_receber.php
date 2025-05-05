@@ -54,8 +54,8 @@ class Totvs_receber {
                 FROM se1
                 WHERE D_E_L_E_T_ <> '*'
                 AND E1_VENCTO >='20250401'
-                AND E1_SERIE = $serie
-                AND E1_NUM = $doc
+                AND E1_SERIE = '$serie'
+                AND E1_NUM = '$doc'
         ";
         // dd($sql);
         $return = DB::connection('totvs')->select($sql);
