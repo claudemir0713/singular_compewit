@@ -50,8 +50,9 @@ class comissaoController extends Controller
 
         $vendedor   = strtoupper($request->vendedor);
         $cliente    = strtoupper($request->cliente);
+        $ordenar    = $request->ordenar;
 
-        $comissoes = Comissao::comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela);
+        $comissoes = Comissao::comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela,$ordenar);
         return view('comissao.comissaoPagar',compact('comissoes','dateForm'));
     }
 
@@ -65,8 +66,9 @@ class comissaoController extends Controller
 
         $vendedor   = strtoupper($request->vendedor);
         $cliente    = strtoupper($request->cliente);
+        $ordenar    = $request->ordenar;
 
-        $comissoes = Comissao::comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela);
+        $comissoes = Comissao::comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela,$ordenar);
         $fileName = 'Comissão pagar.pdf';
         $mpdf = new \Mpdf\Mpdf([
             'format' => 'A4',

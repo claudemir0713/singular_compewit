@@ -50,6 +50,15 @@
                         Até:
                         <input class="form-control form-control-sm" type="date" id="dtF" name="dtF" value="{{ array_key_exists('dtF',$dateForm) ? $dateForm['dtF'] : date('Y-m-d') }}">
                     </div>
+                    <div class="form-group col-md-3">
+                        Ordernar:
+                        <select class="form-control" id="ordenar" name="ordenar">
+                            <option value="VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"   {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Vencimento</option>
+                            <option value="VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA" {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_DT_INCLUSAO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Inclusão</option>
+                            <option value="VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"         {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CLIENTE,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Cliente</option>
+                            <option value="VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA"      {{ array_key_exists('dtF',$dateForm) ? ($dateForm['ordenar'] =='VENDEDOR,CON_NUMERO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA') ? 'selected' : '' : '' }}>Documento</option>
+                        </select>
+                    </div>
                 </div>
                 <button class="btn btn-primary btn-sm font-10" type="submit" >
                     <span class="fas fa-play font-12"></span> <span class="font-12">Filtrar</span>

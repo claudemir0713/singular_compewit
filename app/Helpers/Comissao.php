@@ -98,7 +98,8 @@ class Comissao {
 
         return ($comissao);
     }
-    public static function comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela) {
+    public static function comissaoPagar($dataI,$dataF,$cliente,$vendedor,$nf,$parcela,$ordenar) {
+        if(!$ordenar){$ordenar='VENDEDOR,DT_VENCIMENTO,TIPO_BAIXA,CON_NUMERO,CON_SEQUENCIA' ;};
         $cliente    = " AND CLI.PART_NOME LIKE '$cliente%'";
         $vendedor   = " AND REP.PART_NOME LIKE '%$vendedor%'";
         $data       = " AND CON_DT_VENCIMENTO BETWEEN '$dataI' AND '$dataF'";
@@ -169,11 +170,7 @@ class Comissao {
                 $parcela
             )COMISSAO
             ORDER BY
-                VENDEDOR
-                ,TIPO_BAIXA
-                ,DT_PAGAMENTO
-                ,CON_NUMERO
-                ,CON_SEQUENCIA
+                $ordenar
         ";
         // dd($sql);
         $comissao = DB::connection(env('APP_NAME'))->select($sql);
