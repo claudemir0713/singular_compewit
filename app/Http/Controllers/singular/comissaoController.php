@@ -135,37 +135,37 @@ class comissaoController extends Controller
             $CONC_CODIGO = $CONC_CODIGO[0]->CONC_CODIGO;
 
             try{
-                $FIN_CONTAS = new FIN_CONTAS([
-                    'CON_CODIGO'                  => $CON_CODIGO
-                    , 'CON_TIPO'                  => $item->CON_TIPO
-                    , 'CON_NUMERO'                => $item->CON_NUMERO
-                    , 'CON_SEQUENCIA'             => $item->CON_SEQUENCIA
-                    , 'CON_DT_INCLUSAO'           => $item->CON_DT_INCLUSAO
-                    , 'CON_DT_VENCIMENTO'         => $item->CON_DT_VENCIMENTO
-                    , 'ENT_CODIGO'                => $item->ENT_CODIGO
-                    , 'ENT_TIPO'                  => $item->ENT_TIPO
-                    , 'CON_VALOR_ORIGINAL'        => $item->CON_VALOR_ORIGINAL
-                    , 'CON_VALOR_JUROS'           => $item->CON_VALOR_JUROS
-                    , 'CON_VALOR_MULTA'           => $item->CON_VALOR_MULTA
-                    , 'CON_VALOR_OUTRASDESPESAS'  => $item->CON_VALOR_OUTRASDESPESAS
-                    , 'CON_VALOR_TOTAL_PAGO'      => $item->CON_VALOR_TOTAL_PAGO
-                    , 'CON_VALOR_CORRIGIDO'       => $item->CON_VALOR_CORRIGIDO
-                    , 'CON_SITUACAO'              => $item->CON_SITUACAO
-                    , 'CON_PREVISAO'              => $item->CON_PREVISAO
-                    , 'CON_TIPO_PAGAMENTO'        => $item->CON_TIPO_PAGAMENTO
-                    , 'CON_TX_JUROS_MORA'         => $item->CON_TX_JUROS_MORA
-                    , 'CON_CARENCIA_JUROS_MORA'   => $item->CON_CARENCIA_JUROS_MORA
-                    , 'CON_TX_MULTA'              => $item->CON_TX_MULTA
-                    , 'CON_CARENCIA_MULTA'        => $item->CON_CARENCIA_MULTA
-                    , 'CON_OBS'                   => $item->CON_OBS
-                    , 'CON_ORIGEM'                => $item->CON_ORIGEM
-                    , 'DOC_NUMERO'                => $DOC_NUMERO
-                    , 'DOC_NUMERO_ORIGEM'         => $DOC_NUMERO
-                    , 'CON_DT_COMPETENCIA'        => $item->CON_DT_COMPETENCIA
-                    , 'PART_CODIGO'               => $item->PART_CODIGO
-                    , 'CON_BC_COMISSAO'           => $item->CON_BC_COMISSAO
-                    , 'NOT_DATA_HORA_ALTER_SITUACAO'=> $item->NOT_DATA_HORA_ALTER_SITUACAO
-                ]);
+                $FIN_CONTAS = new FIN_CONTAS();
+                $FIN_CONTAS->CON_CODIGO                = $CON_CODIGO;
+                $FIN_CONTAS->CON_TIPO                  = $item->CON_TIPO;
+                $FIN_CONTAS->CON_NUMERO                = $item->CON_NUMERO;
+                $FIN_CONTAS->CON_SEQUENCIA             = $item->CON_SEQUENCIA;
+                $FIN_CONTAS->CON_DT_INCLUSAO           = $item->CON_DT_INCLUSAO;
+                $FIN_CONTAS->CON_DT_VENCIMENTO         = $item->CON_DT_VENCIMENTO;
+                $FIN_CONTAS->ENT_CODIGO                = $item->ENT_CODIGO;
+                $FIN_CONTAS->ENT_TIPO                  = $item->ENT_TIPO;
+                $FIN_CONTAS->CON_VALOR_ORIGINAL        = $item->CON_VALOR_ORIGINAL;
+                $FIN_CONTAS->CON_VALOR_JUROS           = $item->CON_VALOR_JUROS;
+                $FIN_CONTAS->CON_VALOR_MULTA           = $item->CON_VALOR_MULTA;
+                $FIN_CONTAS->CON_VALOR_OUTRASDESPESAS  = $item->CON_VALOR_OUTRASDESPESAS;
+                $FIN_CONTAS->CON_VALOR_TOTAL_PAGO      = $item->CON_VALOR_TOTAL_PAGO;
+                $FIN_CONTAS->CON_VALOR_CORRIGIDO       = $item->CON_VALOR_CORRIGIDO;
+                $FIN_CONTAS->CON_SITUACAO              = $item->CON_SITUACAO;
+                $FIN_CONTAS->CON_PREVISAO              = $item->CON_PREVISAO;
+                $FIN_CONTAS->CON_TIPO_PAGAMENTO        = $item->CON_TIPO_PAGAMENTO;
+                $FIN_CONTAS->CON_TX_JUROS_MORA         = $item->CON_TX_JUROS_MORA;
+                $FIN_CONTAS->CON_CARENCIA_JUROS_MORA   = $item->CON_CARENCIA_JUROS_MORA;
+                $FIN_CONTAS->CON_TX_MULTA              = $item->CON_TX_MULTA;
+                $FIN_CONTAS->CON_CARENCIA_MULTA        = $item->CON_CARENCIA_MULTA;
+                $FIN_CONTAS->CON_OBS                   = $item->CON_OBS;
+                $FIN_CONTAS->CON_ORIGEM                = $item->CON_ORIGEM;
+                $FIN_CONTAS->DOC_NUMERO                = $DOC_NUMERO;
+                $FIN_CONTAS->DOC_NUMERO_ORIGEM         = $DOC_NUMERO;
+                $FIN_CONTAS->CON_DT_COMPETENCIA        = $item->CON_DT_COMPETENCIA;
+                $FIN_CONTAS->PART_CODIGO               = $item->PART_CODIGO;
+                $FIN_CONTAS->CON_BC_COMISSAO           = $item->CON_BC_COMISSAO;
+                $FIN_CONTAS->NOT_DATA_HORA_ALTER_SITUACAO= $item->NOT_DATA_HORA_ALTER_SITUACAO;
+
                 dd($FIN_CONTAS);
                 $FIN_CONTAS->save();
                 try{
