@@ -11,7 +11,7 @@ class Totvs_receber {
                 SELECT
                     0 												AS CON_CODIGO
                     ,0 												AS CON_TIPO
-                    ,CONCAT(CAST(E1_NUM AS INT),'/',E1_SERIE)  		AS CON_NUMERO
+                    ,CONCAT(CAST(LTRIM(RTRIM(E1_NUM)) AS INT),'/',LTRIM(RTRIM(E1_SERIE)))  		AS CON_NUMERO
                     ,CAST(E1_PARCELA AS INT) 						AS CON_SEQUENCIA
                     ,'2025-03-06' 									AS CON_DT_INCLUSAO
                     ,convert(CHAR(10),CONVERT(DATE,E1_VENCTO),126)	AS CON_DT_VENCIMENTO
