@@ -167,19 +167,21 @@ class comissaoController extends Controller
                     , 'NOT_DATA_HORA_ALTER_SITUACAO'=> $item->NOT_DATA_HORA_ALTER_SITUACAO
                 ]);
                 $FIN_CONTAS->save();
-
-                $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
-                    'CONC_CODIGO'                 => $CONC_CODIGO
-                    , 'CON_CODIGO'                => $CON_CODIGO
-                    , 'USU_COD_VENDEDOR'          => 0
-                    , 'PART_REPRESENTANTE_CODIGO' => $item->PART_CODIGO
-                    , 'CONC_PERC_COMISSAO'        => $item->PERC_COMIS
-                ]);
-                $FIN_CONTAS_COMISSAO->save();
-                // dd($DOC_NUMERO,$CON_CODIGO,$CONC_CODIGO,$item,$FIN_CONTAS,$FIN_CONTAS_COMISSAO);
+                try{
+                    $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
+                        'CONC_CODIGO'                 => $CONC_CODIGO
+                        , 'CON_CODIGO'                => $CON_CODIGO
+                        , 'USU_COD_VENDEDOR'          => 0
+                        , 'PART_REPRESENTANTE_CODIGO' => $item->PART_CODIGO
+                        , 'CONC_PERC_COMISSAO'        => $item->PERC_COMIS
+                    ]);
+                    $FIN_CONTAS_COMISSAO->save();
+                }catch(\Exception $e1){
+                    dd( $e1 );
+                }
 
             }catch(\Exception $e){
-
+                dd( $e ) ;
             }
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
