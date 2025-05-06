@@ -167,6 +167,7 @@ class comissaoController extends Controller
                 $FIN_CONTAS->NOT_DATA_HORA_ALTER_SITUACAO= $item->NOT_DATA_HORA_ALTER_SITUACAO;
 
                 $FIN_CONTAS->save();
+
                 try{
                     $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO();
                     $FIN_CONTAS_COMISSAO->CONC_CODIGO               = $CONC_CODIGO;
@@ -176,11 +177,11 @@ class comissaoController extends Controller
 
                     $FIN_CONTAS_COMISSAO->save();
                 }catch(\Exception $e1){
-                    dd($e1);
+                    // dd($e1);
                 }
 
             }catch(\Exception $e){
-                print_r( $e ) ;
+                // print_r( $e ) ;
             }
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
