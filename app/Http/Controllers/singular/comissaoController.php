@@ -177,11 +177,11 @@ class comissaoController extends Controller
 
                     $FIN_CONTAS_COMISSAO->save();
                 }catch(\Exception $e1){
-                    dd( $e1 );
+                    print_r($e1);
                 }
 
             }catch(\Exception $e){
-                dd( $e ) ;
+                print_r( $e ) ;
             }
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
