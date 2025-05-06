@@ -166,16 +166,15 @@ class comissaoController extends Controller
                 $FIN_CONTAS->CON_BC_COMISSAO           = $item->CON_BC_COMISSAO;
                 $FIN_CONTAS->NOT_DATA_HORA_ALTER_SITUACAO= $item->NOT_DATA_HORA_ALTER_SITUACAO;
 
-                dd($FIN_CONTAS);
                 $FIN_CONTAS->save();
                 try{
-                    $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
-                        'CONC_CODIGO'                 => $CONC_CODIGO
-                        , 'CON_CODIGO'                => $CON_CODIGO
-                        , 'USU_COD_VENDEDOR'          => 0
-                        , 'PART_REPRESENTANTE_CODIGO' => $item->PART_CODIGO
-                        , 'CONC_PERC_COMISSAO'        => $item->PERC_COMIS
-                    ]);
+                    $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO();
+                    $FIN_CONTAS_COMISSAO->CONC_CODIGO               = $CONC_CODIGO;
+                    $FIN_CONTAS_COMISSAO->CON_CODIGO                = $CON_CODIGO;
+                    $FIN_CONTAS_COMISSAO->USU_COD_VENDEDOR          = 0;
+                    $FIN_CONTAS_COMISSAO->PART_REPRESENTANTE_CODIGO = $item->PART_CODIGO;
+                    $FIN_CONTAS_COMISSAO->CONC_PERC_COMISSAO        = $item->PERC_COMIS;
+
                     $FIN_CONTAS_COMISSAO->save();
                 }catch(\Exception $e1){
                     dd( $e1 );
