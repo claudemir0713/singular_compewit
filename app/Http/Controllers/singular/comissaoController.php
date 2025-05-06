@@ -173,7 +173,7 @@ class comissaoController extends Controller
                     , 'CONC_PERC_COMISSAO'        => $item->PERC_COMIS
                 ]);
                 // $FIN_CONTAS_COMISSAO->save();
-                dd($FIN_CONTAS,$FIN_CONTAS_COMISSAO);
+                dd($DOC_NUMERO,$CON_CODIGO,$CONC_CODIGO,$item,$FIN_CONTAS,$FIN_CONTAS_COMISSAO);
 
             }catch(\Exception $e){
 
