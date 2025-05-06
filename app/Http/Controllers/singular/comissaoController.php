@@ -134,7 +134,6 @@ class comissaoController extends Controller
             $CONC_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
             $CONC_CODIGO = $CONC_CODIGO[0]->CONC_CODIGO;
 
-            try{
                 $FIN_CONTAS = new FIN_CONTAS();
                 $FIN_CONTAS->CON_CODIGO                = $CON_CODIGO;
                 $FIN_CONTAS->CON_TIPO                  = $item->CON_TIPO;
@@ -168,21 +167,13 @@ class comissaoController extends Controller
 
                 $FIN_CONTAS->save();
 
-                try{
-                    $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO();
-                    $FIN_CONTAS_COMISSAO->CONC_CODIGO               = $CONC_CODIGO;
-                    $FIN_CONTAS_COMISSAO->CON_CODIGO                = $CON_CODIGO;
-                    $FIN_CONTAS_COMISSAO->PART_REPRESENTANTE_CODIGO = $item->PART_CODIGO;
-                    $FIN_CONTAS_COMISSAO->CONC_PERC_COMISSAO        = $item->PERC_COMIS;
+                $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO();
+                $FIN_CONTAS_COMISSAO->CONC_CODIGO               = $CONC_CODIGO;
+                $FIN_CONTAS_COMISSAO->CON_CODIGO                = $CON_CODIGO;
+                $FIN_CONTAS_COMISSAO->PART_REPRESENTANTE_CODIGO = $item->PART_CODIGO;
+                $FIN_CONTAS_COMISSAO->CONC_PERC_COMISSAO        = $item->PERC_COMIS;
 
-                    $FIN_CONTAS_COMISSAO->save();
-                }catch(\Exception $e1){
-                    // dd($e1);
-                }
-
-            }catch(\Exception $e){
-                // print_r( $e ) ;
-            }
+                $FIN_CONTAS_COMISSAO->save();
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
 
