@@ -170,10 +170,10 @@ class comissaoController extends Controller
                     )VALUES	(
                         $CON_CODIGO
                         ,$item->CON_TIPO
-                        ,$item->CON_NUMERO
+                        ,'$item->CON_NUMERO'
                         ,$item->CON_SEQUENCIA
-                        ,$item->CON_DT_INCLUSAO
-                        ,$item->CON_DT_VENCIMENTO
+                        ,'$item->CON_DT_INCLUSAO'
+                        ,'$item->CON_DT_VENCIMENTO'
                         ,$item->ENT_CODIGO
                         ,$item->ENT_TIPO
                         ,$item->CON_VALOR_ORIGINAL
@@ -189,17 +189,17 @@ class comissaoController extends Controller
                         ,$item->CON_CARENCIA_JUROS_MORA
                         ,$item->CON_TX_MULTA
                         ,$item->CON_CARENCIA_MULTA
-                        ,$item->CON_OBS
-                        ,$item->CON_ORIGEM
+                        ,'$item->CON_OBS'
+                        ,'$item->CON_ORIGEM'
                         ,$DOC_NUMERO
                         ,$DOC_NUMERO
-                        ,$item->CON_DT_COMPETENCIA
+                        ,'$item->CON_DT_COMPETENCIA'
                         ,$item->PART_CODIGO
                         ,$item->CON_BC_COMISSAO
-                        ,$item->NOT_DATA_HORA_ALTER_SITUACAO
+                        ,'$item->NOT_DATA_HORA_ALTER_SITUACAO'
                     )
             ";
-            dd($sql_ins);
+            // dd($sql_ins);
             DB::connection(env('APP_NAME'))->select($sql_ins);
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
