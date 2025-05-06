@@ -199,6 +199,7 @@ class comissaoController extends Controller
                         ,$item->NOT_DATA_HORA_ALTER_SITUACAO
                     )
             ";
+            dd($sql_ins);
             DB::connection(env('APP_NAME'))->select($sql_ins);
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
