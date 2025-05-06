@@ -134,6 +134,7 @@ class comissaoController extends Controller
             $CONC_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
             $CONC_CODIGO = $CONC_CODIGO[0]->CONC_CODIGO;
 
+            dd($CON_CODIGO);
             try{
                 $FIN_CONTAS = new FIN_CONTAS([
                     'CON_CODIGO'                  => $CON_CODIGO
