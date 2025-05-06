@@ -124,15 +124,15 @@ class comissaoController extends Controller
         foreach($return as $item){
             $sql = "SELECT max(DOC_NUMERO)+1 AS DOC_NUMERO  FROM DOCUMENTO";
             $DOC_NUMERO = DB::connection(env('APP_NAME'))->select($sql);
-            $DOC_NUMERO = $DOC_NUMERO[0]->$DOC_NUMERO;
+            $DOC_NUMERO = $DOC_NUMERO[0]->DOC_NUMERO;
 
             $sql = "SELECT max(CON_CODIGO)+1 AS CON_CODIGO  FROM FIN_CONTAS";
             $CON_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
-            $CON_CODIGO = $CON_CODIGO[0]->$CON_CODIGO;
+            $CON_CODIGO = $CON_CODIGO[0]->CON_CODIGO;
 
             $sql = "SELECT max(CONC_CODIGO)+1 AS CONC_CODIGO  FROM FIN_CONTAS_COMISSAO ";
             $CONC_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
-            $CONC_CODIGO = $CONC_CODIGO[0]->$CONC_CODIGO;
+            $CONC_CODIGO = $CONC_CODIGO[0]->CONC_CODIGO;
 
             try{
                 $FIN_CONTAS = new FIN_CONTAS([
