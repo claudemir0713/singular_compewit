@@ -134,7 +134,6 @@ class comissaoController extends Controller
             $CONC_CODIGO = DB::connection(env('APP_NAME'))->select($sql);
             $CONC_CODIGO = $CONC_CODIGO[0]->CONC_CODIGO;
 
-            dd($CON_CODIGO);
             try{
                 $FIN_CONTAS = new FIN_CONTAS([
                     'CON_CODIGO'                  => $CON_CODIGO
@@ -167,6 +166,7 @@ class comissaoController extends Controller
                     , 'CON_BC_COMISSAO'           => $item->CON_BC_COMISSAO
                     , 'NOT_DATA_HORA_ALTER_SITUACAO'=> $item->NOT_DATA_HORA_ALTER_SITUACAO
                 ]);
+                dd($FIN_CONTAS);
                 $FIN_CONTAS->save();
                 try{
                     $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO([
