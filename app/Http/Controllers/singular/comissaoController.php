@@ -179,8 +179,9 @@ class comissaoController extends Controller
                         ,$item->CON_VALOR_ORIGINAL
                         ,$item->CON_VALOR_JUROS
                         ,$item->CON_VALOR_MULTA
+                        ,0
                         ,$item->CON_VALOR_OUTRASDESPESAS
-                        ,$item->CON_VALOR_TOTAL_PAGO
+                        ,0
                         ,$item->CON_VALOR_CORRIGIDO
                         ,$item->CON_SITUACAO
                         ,$item->CON_PREVISAO
@@ -199,8 +200,8 @@ class comissaoController extends Controller
                         ,'$item->NOT_DATA_HORA_ALTER_SITUACAO'
                     )
             ";
-            print_r($sql_ins);
-            // DB::connection(env('APP_NAME'))->select($sql_ins);
+            // print_r($sql_ins);
+            DB::connection(env('APP_NAME'))->select($sql_ins);
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
 
