@@ -171,7 +171,6 @@ class comissaoController extends Controller
                     $FIN_CONTAS_COMISSAO = new FIN_CONTAS_COMISSAO();
                     $FIN_CONTAS_COMISSAO->CONC_CODIGO               = $CONC_CODIGO;
                     $FIN_CONTAS_COMISSAO->CON_CODIGO                = $CON_CODIGO;
-                    $FIN_CONTAS_COMISSAO->USU_COD_VENDEDOR          = 0;
                     $FIN_CONTAS_COMISSAO->PART_REPRESENTANTE_CODIGO = $item->PART_CODIGO;
                     $FIN_CONTAS_COMISSAO->CONC_PERC_COMISSAO        = $item->PERC_COMIS;
 
