@@ -17,7 +17,7 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
 
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        {{-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> --}}
 
 
         {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> --}}

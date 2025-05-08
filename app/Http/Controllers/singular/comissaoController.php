@@ -200,8 +200,26 @@ class comissaoController extends Controller
                         ,'$item->NOT_DATA_HORA_ALTER_SITUACAO'
                     )
             ";
-            // print_r($sql_ins);
             DB::connection(env('APP_NAME'))->select($sql_ins);
+
+            $sql_ins_com="
+                INSERT INTO FIN_CONTAS_COMISSAO
+                    (
+                        CONC_CODIGO
+                        , CON_CODIGO
+                        , PART_REPRESENTANTE_CODIGO
+                        , CONC_PERC_COMISSAO
+                    ) VALUES
+                    (
+                        $CONC_CODIGO
+                        ,$CON_CODIGO
+                        ,$item->PART_CODIGO
+                        ,$item->PERC_COMIS
+                    )
+            ";
+            DB::connection(env('APP_NAME'))->select($sql_ins_com);
+            // dd($sql_ins,$sql_ins_com);
+
 
             print_r($DOC_NUMERO.' - '.$CON_CODIGO.' - '.$CONC_CODIGO."\n");
 
