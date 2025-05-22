@@ -45,7 +45,7 @@ class Estoque {
             WHERE 1=1
             AND extract(year FROM COMPRAS.CMP_DT_ENTRADA) = $ano
             AND extract(month FROM COMPRAS.CMP_DT_ENTRADA)= $mes
-            AND COMPRAS_ITENS.cfop_codigo IN AND COMPRAS_ITENS.cfop_codigo IN ('1.101','1.102','1.122','1.407','1.501','1.551','1.556','1.653','1.901','1.912','1.916','1.922','1.949','2.101','2.102','2.122','2.252','2.556','2.653','2.924')
+            AND COMPRAS_ITENS.cfop_codigo IN ('1.101','1.102','1.122','1.407','1.501','1.551','1.556','1.653','1.901','1.912','1.916','1.922','1.949','2.101','2.102','2.122','2.252','2.556','2.653','2.924')
             AND COMPRAS.CMP_USU_COD_CONFIRMACAO IN ('3')
             AND PRD_TIPO_PRODUTO IN ('00','01','02','04')
 
