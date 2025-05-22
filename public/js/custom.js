@@ -278,7 +278,7 @@ $(document).ready(function () {
 
     /***************************btnAtualizaEstoque****************************************/
     $(document).on('click','.btnAtualizaEstoque',function(){
-        btnFechaEstoque();
+        btnAtualizaEstoque();
     })
 
 

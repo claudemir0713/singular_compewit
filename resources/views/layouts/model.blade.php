@@ -17,11 +17,6 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
 
-        {{-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> --}}
-
-
-        {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> --}}
-
 
 
         <!-- javascripts -->
@@ -34,8 +29,6 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
 
-        {{-- <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> --}}
 
         <link rel="stylesheet" href="{{ asset('css/v5.7.0_all.css') }}" crossorigin="anonymous">
         <script src="{{ asset('js/9083a84e48.js') }}" crossorigin="anonymous"></script>
@@ -65,8 +58,6 @@
         <script src="{{ asset('js/custom.js?v='.$version_js) }}" type="text/javascript"></script>
 
 
-        {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('ckeditor/sample.js') }}" type="text/javascript"></script> --}}
 
         <!-- Chosen -->
         <script src="{{ asset('js/chosen.jquery.min.js') }}" type="text/javascript"></script>

@@ -443,7 +443,7 @@ function btnFechaEstoque(){
     })
 }
 
-function btnFechaEstoque(){
+function btnAtualizaEstoque(){
     let texto = $(document).find('#texto').val();
 
     let route = '/contabilidade/geraAcertoEstoque';
