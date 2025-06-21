@@ -36,8 +36,15 @@ class contabilidadeController extends Controller
             $txt .=trim($item->TIPO).';';
             $txt .=trim(date('d/m/Y', strtotime($item->DATA))).';';
             $txt .=trim($item->DOCUMENTO).';';
-            $txt .=trim($item->C).';';
-            $txt .=trim($item->D).';';
+
+            if(trim($item->TIPO)=='C'){
+                $txt .=trim($item->C).';';
+                $txt .=trim($item->D).';';
+            }else{
+                $txt .=trim($item->D).';';
+                $txt .=trim($item->C).';';
+            }
+
             $txt .=trim($item->COD_HIST).';';
             $txt .=trim($item->DOCUMENTO).'|'.trim($item->HISTORICO).';';
             $txt .= number_format(trim($item->VALOR),2,',','')."\n";
@@ -91,9 +98,12 @@ class contabilidadeController extends Controller
             $pro_cod    = $linha[1];
             $pro_des    = $linha[2];
             $qtd        = floatval(str_replace(',','.',str_replace('.','',$linha[3])));
+            $valor      = floatval(str_replace(',','.',str_replace('.','',$linha[4])));
+
             try{
                 $atualiza = singular_estoque_bloco_k::find($id);
                 $atualiza->qtd = $qtd;
+                $atualiza->valor = $valor;
                 $atualiza->save();
                 $retorno.="OK -> Produto $pro_cod"."\n";
             }catch(\Exception $e){

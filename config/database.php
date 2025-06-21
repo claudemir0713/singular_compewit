@@ -64,7 +64,7 @@ return [
         ],
         'Compewit' => [
             'driver'   => 'firebird',
-            'host'     => 'Server',
+            'host'     => '138.204.146.9',
             'port'     => '3050',
             'database' => 'C:\Singular\BD\COMPEWIT.SIN',
             'username' => 'SYSDBA',
@@ -102,7 +102,8 @@ return [
 
         'totvs' => [
             'driver' => 'sqlsrv',
-            'host' => 'WIN-7MO8BMKTQVO\SQLEXPRESS',
+            // 'host' => 'WIN-7MO8BMKTQVO\SQLEXPRESS',
+            'host' => '138.204.146.9\SQLEXPRESS',
             'port' => '1433',
             'database' => 'firsttop',
             'username' => 'sa',

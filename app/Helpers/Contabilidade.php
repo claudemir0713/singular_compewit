@@ -42,8 +42,8 @@ class Contabilidade {
                         WHEN  CX_DESCRICAO LIKE 'CAIXA' 		THEN 25 --'Caixa'
                         WHEN  CX_DESCRICAO LIKE 'DEPOSITO%IDE%'	THEN 349 --'Adto'
                         WHEN  CX_DESCRICAO LIKE '%BRADESCO%' 	THEN 36 --'Banco Bradesco'
-                        WHEN  CX_DESCRICAO LIKE 'BANCO%BRASIL%' THEN 35 --'Banco do Brasil '
-                        WHEN  CX_DESCRICAO LIKE 'BANCO%ITA%' 	THEN 34 --'Banco Itaú'
+                        WHEN  CX_DESCRICAO LIKE '%BRASIL%'      THEN 35 --'Banco do Brasil'
+                        WHEN  CX_DESCRICAO LIKE '%ITAU%' 	    THEN 34 --'Banco Itaú'
                         WHEN  CX_DESCRICAO LIKE '%SICOOB%' 		THEN 39 --'Banco Sicoob'
                         ELSE  CX_DESCRICAO
                     END																				AS C
@@ -56,7 +56,7 @@ class Contabilidade {
                     END																				AS COD_HIST
                     ,CASE
                         WHEN COALESCE(DESP.CEN_CODIGO,0) IN (346) THEN 'TARIFA BANCÁRIA'
-                        ELSE CX.CXM_DESCRICAO||' #'||FC.CON_CODIGO
+                        ELSE CX.CXM_DESCRICAO
                     END                                                                             AS HISTORICO
                     ,CXM_VALOR_TOTAL*COALESCE((RATE.CCL_PERCENTUAL/100),1)							AS VALOR
 
@@ -105,8 +105,8 @@ class Contabilidade {
                         WHEN  D LIKE 'CAIXA' 			THEN 25 --'Caixa'
                         WHEN  D LIKE 'DEPOSITO%IDE%'	THEN 349 --'Adto'
                         WHEN  D LIKE '%BRADESCO%' 		THEN 36 --'Banco Bradesco'
-                        WHEN  D LIKE 'BANCO%BRASIL%' 	THEN 35 --'Banco do Brasil '
-                        WHEN  D LIKE 'BANCO%ITA%' 		THEN 34 --'Banco Itaú'
+                        WHEN  D LIKE '%BRASIL%' 	    THEN 35 --'Banco do Brasil '
+                        WHEN  D LIKE '%ITAU%' 		    THEN 34 --'Banco Itaú'
                         WHEN  D LIKE '%SICOOB%' 		THEN 39 --'Banco Sicoob'
                         ELSE  D
                     END D
@@ -114,8 +114,8 @@ class Contabilidade {
                         WHEN  C LIKE 'CAIXA' 			THEN 25 --'Caixa'
                         WHEN  C LIKE 'DEPOSITO%IDE%'	THEN 349 --'Adto'
                         WHEN  C LIKE '%BRADESCO%' 		THEN 36 --'Banco Bradesco'
-                        WHEN  C LIKE 'BANCO%BRASIL%' 	THEN 35 --'Banco do Brasil '
-                        WHEN  C LIKE 'BANCO%ITA%' 		THEN 34 --'Banco Itaú'
+                        WHEN  C LIKE '%BRASIL%' 	    THEN 35 --'Banco do Brasil '
+                        WHEN  C LIKE '%ITAU%' 		    THEN 34 --'Banco Itaú'
                         WHEN  C LIKE '%SICOOB%' 		THEN 39 --'Banco Sicoob'
                         ELSE  C
                     END  C
