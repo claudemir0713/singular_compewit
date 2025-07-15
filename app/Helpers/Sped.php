@@ -214,7 +214,7 @@ class Sped {
     }
 
     public static function estoqueK($dataI,$dataF){
-        $EST = singular_estoque_bloco_k::where('qtd','>',0)->where('data','>=',$dataI)->where('data','<=',$dataF)->get();
+        $EST = singular_estoque_bloco_k::where('qtd','>=',0)->where('data','>=',$dataI)->where('data','<=',$dataF)->get();
         return $EST;
     }
     public static function estoque($dataI,$dataF){
