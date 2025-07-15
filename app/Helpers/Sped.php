@@ -221,7 +221,7 @@ class Sped {
         $EST = singular_estoque_bloco_k::leftJoin('produto_mysql','produto_mysql.prd_codigo','singular_estoque_bloco_k.prd_codigo')
                 ->where('data','>=',$dataI)
                 ->where('data','<=',$dataF)
-                ->where('qtd','>',0)
+                ->where('qtd','>=',0)
                 ->get([
                     'produto_mysql.prd_codigo'
                     ,'produto_mysql.prd_descricao'
