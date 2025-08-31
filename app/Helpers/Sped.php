@@ -429,13 +429,13 @@ class Sped {
             $REG_0200 = Sped::estoque($dataI,$dataF);
             foreach($REG_0200 AS $ITEM){
                 $REG                ='0200';
-                $COD_ITEM           = $ITEM->prd_codigo;
-                $DESCR_ITEM         = $ITEM->prd_descricao;
+                $COD_ITEM           = $ITEM->PRD_CODIGO ;
+                $DESCR_ITEM         = $ITEM->PRD_DESCRICAO;
                 $COD_BARRA          = '';
                 $COD_ANT_ITEM       = '';
-                $UNID_INV           = $ITEM->um_codigo;
-                $TIPO_ITEM          = $ITEM->prd_tipo_produto;
-                $COD_NCM            = $ITEM->ncm_codigo;
+                $UNID_INV           = $ITEM->UM_CODIGO;
+                $TIPO_ITEM          = $ITEM->PRD_TIPO_PRODUTO;
+                $COD_NCM            = $ITEM->NCM_CODIGO;
                 $COD_NCM            = preg_replace('/[^0-9]/', '', $COD_NCM);
                 $EX_IPI             = '';
                 $COD_GEN            = '';
@@ -469,7 +469,7 @@ class Sped {
                 };
 
 
-                if($ITEM->prd_codigo){
+                if($ITEM->PRD_CODIGO){
                     $Arr_Registro_0200[]= '|'.$REG.'|'.$COD_ITEM.'|'.$DESCR_ITEM.'|'.$COD_BARRA.'|'.$COD_ANT_ITEM.'|'.$UNID_INV.'|'.$TIPO_ITEM.'|'.$COD_NCM.'|'.$EX_IPI.'|'.$COD_GEN.'|'.$COD_LST.'|'.$ALIQ_ICMS.'|'.$CEST.'|';
                     if($PRO_TOTVS){
                         $Arr_Registro_0200[]= '|0205|'.$DESCR_ITEM_ANT.'|'.$DATA1.'|'.$DATA1.'|'.$COD_ITEM_ANT.'|';
@@ -677,8 +677,8 @@ class Sped {
         $DT_EST = date('dmY',strtotime($dataF));
         $txt    = '';
         foreach($k200 as $item){
-            $COD_ITEM   = $item->prd_codigo;
-            $QTD        = number_format($item->qtd,3,',','');
+            $COD_ITEM   = $item->PRD_CODIGO;
+            $QTD        = number_format($item->SET_PRD_ESTOQUE,3,',','');
             $IND_EST    =  0;
             $COD_PART   = '';
             $txt .= '|'.$REG.'|'.$DT_EST.'|'.$COD_ITEM.'|'.$QTD.'|'.$IND_EST.'|'.$COD_PART.'|'."\r\n";
