@@ -102,7 +102,7 @@ class contabilidadeController extends Controller
             $valor      = floatval(str_replace(',','.',str_replace('.','',$linha[4])));
 
             try{
-                $atualiza = SPED_ESTOQUE_TEMP::where('SET_CODIGO',$id)->first();
+                $atualiza = SPED_ESTOQUE_TEMP::find($id);
                 $atualiza->SET_PRD_ESTOQUE = $qtd;
                 $atualiza->SET_PRD_CUSTO_VALORIZACAO = $valor;
                 $atualiza->save();

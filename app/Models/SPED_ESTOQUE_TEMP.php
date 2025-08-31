@@ -14,7 +14,7 @@ class SPED_ESTOQUE_TEMP extends Model
         return $this->connection = env('APP_NAME');
     }
 	protected $table = 'SPED_ESTOQUE_TEMP';
-    protected $primaryKey = ['SET_PERIODO','PRD_CODIGO'];
+    protected $primaryKey = 'SET_CODIGO';
     public $timestamps = false;
     protected $fillable= [
         'SET_PERIODO'
