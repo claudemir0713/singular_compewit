@@ -154,11 +154,7 @@ class contabilidadeController extends Controller
             $QTD_LIN_0200   = $Registro_0200['qtd'];
             $Registro_0200  = $Registro_0200['txt'];
 
-            $Registro_0220  = Sped::Registro_0220($dataI,$dataF);
-            $QTD_LIN_0220   = $Registro_0220['qtd'];
-            $Registro_0220  = $Registro_0220['txt'];
-
-            $QTD_LIN_0990   = 1+$QTD_LIN_0000+$QTD_LIN_0001+$QTD_LIN_0002+$QTD_LIN_0005+$QTD_LIN_0100+$QTD_LIN_0150+$QTD_LIN_0190+$QTD_LIN_0200+$QTD_LIN_0220;
+            $QTD_LIN_0990   = 1+$QTD_LIN_0000+$QTD_LIN_0001+$QTD_LIN_0002+$QTD_LIN_0005+$QTD_LIN_0100+$QTD_LIN_0150+$QTD_LIN_0190+$QTD_LIN_0200;
             $Registro_0990  = Sped::Registro_0990($QTD_LIN_0990);
             $QTD_LIN_0990   = $Registro_0990['qtd'];
             $Registro_0990  = $Registro_0990['txt'];
@@ -255,7 +251,7 @@ class contabilidadeController extends Controller
             $QTD_LIN_9001   = $Registro_9001['qtd'];
             $Registro_9001  = $Registro_9001['txt'];
 
-            $Registro_9900  = Sped::Registro_9900($QTD_LIN_0000,$QTD_LIN_0001,$QTD_LIN_0002,$QTD_LIN_0005,$QTD_LIN_0100,$QTD_LIN_0150,$QTD_LIN_0190,$QTD_LIN_0200,$QTD_LIN_0220,$QTD_LIN_0990,$QTD_LIN_B001,$QTD_LIN_C001,$QTD_LIN_D001,$QTD_LIN_E001,$QTD_LIN_G001,$QTD_LIN_H001,$QTD_LIN_K001,$QTD_LIN_K200,$QTD_LIN_1001,$QTD_LIN_1990-1);
+            $Registro_9900  = Sped::Registro_9900($QTD_LIN_0000,$QTD_LIN_0001,$QTD_LIN_0002,$QTD_LIN_0005,$QTD_LIN_0100,$QTD_LIN_0150,$QTD_LIN_0190,$QTD_LIN_0200,$QTD_LIN_0990,$QTD_LIN_B001,$QTD_LIN_C001,$QTD_LIN_D001,$QTD_LIN_E001,$QTD_LIN_G001,$QTD_LIN_H001,$QTD_LIN_K001,$QTD_LIN_K200,$QTD_LIN_1001,$QTD_LIN_1990-1);
             $QTD_LIN_9900   = $Registro_9900['qtd'];
             $Registro_9900  = $Registro_9900['txt'];
 
@@ -265,7 +261,7 @@ class contabilidadeController extends Controller
             $QTD_LIN_9900   = $Registro_9990['qtd'];
             $Registro_9990  = $Registro_9990['txt'];
 
-            $QTD_LIN_9999   = $QTD_LIN_0000+$QTD_LIN_0001+$QTD_LIN_0002+$QTD_LIN_0005+$QTD_LIN_0100+$QTD_LIN_0150+$QTD_LIN_0190+$QTD_LIN_0200+$QTD_LIN_0220+$QTD_LIN_0990+$QTD_LIN_B001+$QTD_LIN_B990+$QTD_LIN_C001+$QTD_LIN_C990+$QTD_LIN_D001+$QTD_LIN_D990+$QTD_LIN_E001+$QTD_LIN_E990+$QTD_LIN_H990+$QTD_LIN_K001+$QTD_LIN_K990+$QTD_LIN_1001+$QTD_LIN_1990+$QTD_LIN_9001+$QTD_LIN_9900;
+            $QTD_LIN_9999   = $QTD_LIN_0000+$QTD_LIN_0001+$QTD_LIN_0002+$QTD_LIN_0005+$QTD_LIN_0100+$QTD_LIN_0150+$QTD_LIN_0190+$QTD_LIN_0200+$QTD_LIN_0990+$QTD_LIN_B001+$QTD_LIN_B990+$QTD_LIN_C001+$QTD_LIN_C990+$QTD_LIN_D001+$QTD_LIN_D990+$QTD_LIN_E001+$QTD_LIN_E990+$QTD_LIN_H990+$QTD_LIN_K001+$QTD_LIN_K990+$QTD_LIN_1001+$QTD_LIN_1990+$QTD_LIN_9001+$QTD_LIN_9900;
             $Registro_9999  = Sped::Registro_9999($QTD_LIN_9999-3);
             $QTD_LIN_9999   = $Registro_9999['qtd'];
             $Registro_9999  = $Registro_9999['txt'];
@@ -279,7 +275,6 @@ class contabilidadeController extends Controller
             $sped .= $Registro_0150;
             $sped .= $Registro_0190;
             $sped .= $Registro_0200;
-            $sped .= $Registro_0220;
             $sped .= $Registro_0990;
             $sped .= $Registro_B001;
             $sped .= $Registro_B990;

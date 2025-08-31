@@ -6,6 +6,7 @@ use App\Models\EMPRESA;
 use App\Models\NF_VENDA_CABECALHO;
 use App\Models\PRODUTOS;
 use App\Models\singular_estoque_bloco_k;
+use App\Models\SPED_ESTOQUE_TEMP;
 use Illuminate\Support\Facades\DB;
 
 
@@ -214,22 +215,42 @@ class Sped {
     }
 
     public static function estoqueK($dataI,$dataF){
-        $EST = singular_estoque_bloco_k::where('qtd','>=',0)->where('data','>=',$dataI)->where('data','<=',$dataF)->get();
+        // $EST = singular_estoque_bloco_k::where('qtd','>=',0)->where('data','>=',$dataI)->where('data','<=',$dataF)->get();
+        $EST = SPED_ESTOQUE_TEMP::where('SET_PRD_ESTOQUE','>=',0)->where('SET_PERIODO','>=',$dataI)->where('SET_PERIODO','<=',$dataF)->get();
         return $EST;
     }
     public static function estoque($dataI,$dataF){
-        $EST = singular_estoque_bloco_k::leftJoin('produto_mysql','produto_mysql.prd_codigo','singular_estoque_bloco_k.prd_codigo')
-                ->where('data','>=',$dataI)
-                ->where('data','<=',$dataF)
-                ->where('qtd','>=',0)
+        // $EST = singular_estoque_bloco_k::leftJoin('produto_mysql','produto_mysql.prd_codigo','singular_estoque_bloco_k.prd_codigo')
+        //         ->where('data','>=',$dataI)
+        //         ->where('data','<=',$dataF)
+        //         ->where('qtd','>=',0)
+        //         ->get([
+        //             'produto_mysql.prd_codigo'
+        //             ,'produto_mysql.prd_descricao'
+        //             ,db::raw("'' as cod_barra")
+        //             ,db::raw("'' as cod_ant_item")
+        //             ,'um_codigo'
+        //             ,'prd_tipo_produto'
+        //             ,'ncm_codigo'
+        //             ,db::raw("'' as ex_ipi")
+        //             ,db::raw("'' as cod_gen")
+        //             ,db::raw("'' as cod_lst")
+        //             ,db::raw("'' as aliq_icms")
+        //             ,db::raw("'' as cest")
+        //         ]);
+
+        $EST = SPED_ESTOQUE_TEMP::leftJoin('PRODUTOS','PRODUTOS.PRD_CODIGO','SPED_ESTOQUE_TEMP.PRD_CODIGO')
+                ->where('SET_PERIODO','>=',$dataI)
+                ->where('SET_PERIODO','<=',$dataF)
+                ->where('SET_PRD_ESTOQUE','>=',0)
                 ->get([
-                    'produto_mysql.prd_codigo'
-                    ,'produto_mysql.prd_descricao'
+                    db::raw("SPED_ESTOQUE_TEMP.PRD_CODIGO as prd_codigo")
+                    ,db::raw("SPED_ESTOQUE_TEMP.PRD_DESCRICAO as prd_descricao")
                     ,db::raw("'' as cod_barra")
                     ,db::raw("'' as cod_ant_item")
-                    ,'um_codigo'
-                    ,'prd_tipo_produto'
-                    ,'ncm_codigo'
+                    ,db::raw("PRODUTOS.UM_CODIGO as um_codigo")
+                    ,db::raw("PRODUTOS.PRD_TIPO_PRODUTO as prd_tipo_produto")
+                    ,db::raw("PRODUTOS.NCM_CODIGO as ncm_codigo")
                     ,db::raw("'' as ex_ipi")
                     ,db::raw("'' as cod_gen")
                     ,db::raw("'' as cod_lst")
@@ -460,45 +481,6 @@ class Sped {
             $txt = '';
             $qtd = 0;
             foreach( array_unique($Arr_Registro_0200) as $item){
-                $txt .=$item."\r\n";
-                $qtd ++;
-            }
-            $return = [
-                'txt'   => $txt
-                ,'qtd'  => $qtd
-            ];
-            return $return;
-    }
-
-    public static function Registro_0220($dataI,$dataF) {
-        $Arr_Registro_0220=[];
-        /*****************************notas de saida**************************************/
-            // $REG_0220 = Sped::nfSaida($dataI,$dataF);
-            // foreach($REG_0220 AS $ITEM){
-            //     $REG               ='0220';
-            //     $UNID_CONV         = $ITEM->UNID_CONV;
-            //     $FAT_CONV          = number_format($ITEM->FAT_CONV,2,',','');
-            //     $COD_BARRA         = $ITEM->COD_BARRA;
-            //     if($ITEM->COD_ITEM){
-            //         $Arr_Registro_0220[]= '|'.$REG.'|'.$UNID_CONV.'|'.$FAT_CONV.'|'.$COD_BARRA.'|';
-            //     }
-            // }
-        /*****************************notas de entrada**************************************/
-            // $REG_0220 = Sped::nfEntrada($dataI,$dataF);
-            // foreach($REG_0220 AS $ITEM){
-            //     $REG               ='0220';
-            //     $UNID_CONV         = $ITEM->UNID_CONV;
-            //     $FAT_CONV          = number_format($ITEM->FAT_CONV,2,',','');
-            //     $COD_BARRA         = $ITEM->COD_BARRA;
-            //     if($ITEM->COD_ITEM){
-            //         $Arr_Registro_0220[]= '|'.$REG.'|'.$UNID_CONV.'|'.$FAT_CONV.'|'.$COD_BARRA.'|';
-            //     }
-            // }
-
-        /*************************************************************************************/
-            $txt = '';
-            $qtd = 0;
-            foreach( array_unique($Arr_Registro_0220) as $item){
                 $txt .=$item."\r\n";
                 $qtd ++;
             }
@@ -759,7 +741,7 @@ class Sped {
         return $return;
     }
 
-    public static function Registro_9900($QTD_LIN_0000,$QTD_LIN_0001,$QTD_LIN_0002,$QTD_LIN_0005,$QTD_LIN_0100,$QTD_LIN_0150,$QTD_LIN_0190,$QTD_LIN_0200,$QTD_LIN_0220,$QTD_LIN_0990,$QTD_LIN_B001,$QTD_LIN_C001,$QTD_LIN_D001,$QTD_LIN_E001,$QTD_LIN_G001,$QTD_LIN_H001,$QTD_LIN_K001,$QTD_LIN_K200,$QTD_LIN_1001,$QTD_LIN_1990){
+    public static function Registro_9900($QTD_LIN_0000,$QTD_LIN_0001,$QTD_LIN_0002,$QTD_LIN_0005,$QTD_LIN_0100,$QTD_LIN_0150,$QTD_LIN_0190,$QTD_LIN_0200,$QTD_LIN_0990,$QTD_LIN_B001,$QTD_LIN_C001,$QTD_LIN_D001,$QTD_LIN_E001,$QTD_LIN_G001,$QTD_LIN_H001,$QTD_LIN_K001,$QTD_LIN_K200,$QTD_LIN_1001,$QTD_LIN_1990){
         $txt = '';
         $qtd = 0;
         if($QTD_LIN_0000){
@@ -797,10 +779,6 @@ class Sped {
         }
         if($QTD_LIN_0200){
             $txt .= '|9900|0200|'.$QTD_LIN_0200.'|'."\r\n";
-            $qtd = $qtd+1;
-        }
-        if($QTD_LIN_0220){
-            $txt .= '|9900|0220|'.$QTD_LIN_0220.'|'."\r\n";
             $qtd = $qtd+1;
         }
         if($QTD_LIN_B001){
