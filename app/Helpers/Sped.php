@@ -236,6 +236,8 @@ class Sped {
                     ,db::raw("'' as aliq_icms")
                     ,db::raw("'' as cest")
                 ]);
+
+
         return $EST;
     }
 
@@ -419,10 +421,40 @@ class Sped {
                 $COD_LST            = '';
                 $ALIQ_ICMS          = '';
                 $CEST               = '';
+                $PRO_TOTVS          = null;
+
+                if($dataI == '2025-04-01'){
+                    if($COD_ITEM){
+                        $SQL_PRO_SINGULAR = "SELECT PRD_CODIGO, PRD_DESCRICAO, PRD_REFERENCIA  FROM PRODUTOS WHERE PRD_CODIGO =  $COD_ITEM";
+                        $PRD_REFERENCIA = DB::connection('Compewit')->select($SQL_PRO_SINGULAR);
+                        if($PRD_REFERENCIA){
+                            $PRD_REFERENCIA = $PRD_REFERENCIA[0]->PRD_REFERENCIA;
+                        };
+                    }
+
+                    $DESCR_ITEM_ANT = '';
+                    $DATA1 = $dataI;
+                    $DATA2 = '';
+                    $COD_ITEM_ANT='';
+
+                    $SQL_PRO_TOTVS ="SELECT ltrim(rtrim(B1_CODPROD)) AS B1_CODPROD , ltrim(rtrim(B1_DESCRI)) AS B1_DESCRI FROM SB1 WHERE ltrim(rtrim(B1_CODPROD)) = '$PRD_REFERENCIA' AND  D_E_L_E_T_ <> '*'";
+                    $PRO_TOTVS = DB::connection('totvs')->select($SQL_PRO_TOTVS);
+                    if($PRO_TOTVS){
+                        $DESCR_ITEM_ANT = $PRO_TOTVS[0]->B1_DESCRI;
+                        $DATA1 = $dataI;
+                        $DATA2 = '';
+                        $COD_ITEM_ANT=$PRO_TOTVS[0]->B1_CODPROD;;
+                    };
+                };
+
 
                 if($ITEM->prd_codigo){
                     $Arr_Registro_0200[]= '|'.$REG.'|'.$COD_ITEM.'|'.$DESCR_ITEM.'|'.$COD_BARRA.'|'.$COD_ANT_ITEM.'|'.$UNID_INV.'|'.$TIPO_ITEM.'|'.$COD_NCM.'|'.$EX_IPI.'|'.$COD_GEN.'|'.$COD_LST.'|'.$ALIQ_ICMS.'|'.$CEST.'|';
+                    if($PRO_TOTVS){
+                        $Arr_Registro_0200[]= '|0205|'.$DESCR_ITEM_ANT.'|'.$DATA1.'|'.$DATA1.'|'.$COD_ITEM_ANT.'|';
+                    };
                 }
+
             }
         /*************************************************************************************/
             $txt = '';

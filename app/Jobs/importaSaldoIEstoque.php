@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\PLANNER_ESTOQUE_BLOCO_K;
+use App\Models\produto_mysql;
 use App\Models\sigular_estoque_bloco_k;
 use App\Models\singular_estoque_bloco_k;
 use Illuminate\Bus\Queueable;
@@ -59,7 +60,6 @@ class importaSaldoIEstoque implements ShouldQueue
                     AND SB9.B9_LOCAL = '01'
                     AND YEAR(SB9.B9_DATA) = 2025
                     AND MONTH(SB9.B9_DATA) = 3
-                    AND SB9.B9_QINI >0
                     AND DAY(SB9.B9_DATA) = (SELECT DAY(MAX(SB91.B9_DATA))
                                             FROM SB9 SB91
                                             WHERE YEAR(SB91.B9_DATA) = YEAR(SB9.B9_DATA) AND MONTH(SB91.B9_DATA) = MONTH(SB9.B9_DATA)
@@ -74,17 +74,26 @@ class importaSaldoIEstoque implements ShouldQueue
         foreach($est as $item){
             $x++;
             try{
-                $estoque = new singular_estoque_bloco_k([
-                    'prd_codigo'  => $item->PRD_CODIGO
-                    , 'qtd'         => number_format($item->QTD_EI,2,'.','')
-                    , 'valor'       => number_format($item->TOT_EI,2,'.','')
-                    , 'data'        => $item->DT_FECHAMENTO
-                ]);
-                $estoque->save();
+                $produto = produto_mysql::where('prd_codigo', $item->PRD_CODIGO)->first();
+                if($produto){
+                    $prd_descri = $produto->prd_descricao;
+                }
+                if(is_numeric(trim($item->PRD_CODIGO))){
+                    $estoque = new singular_estoque_bloco_k([
+                        'prd_codigo'    => trim($item->PRD_CODIGO)
+                        ,'prd_descri'   => $prd_descri
+                        , 'qtd'         => number_format($item->QTD_EI,2,'.','')
+                        , 'valor'       => number_format($item->TOT_EI,2,'.','')
+                        , 'data'        => $item->DT_FECHAMENTO
+                    ]);
+                    $estoque->save();
+                    print_r($x.'-'.$item->PRD_CODIGO.'-'.number_format($item->QTD_EI,2,'.','').'-'.number_format($item->TOT_EI,2,'.','')."\n");
+                }else{
+                    print_r(trim($item->PRD_CODIGO)."\n");
+                };
             }catch(\Exception $e){
                 dd($e);
             }
-            print_r($x.'-'.$item->PRD_CODIGO.'-'.number_format($item->QTD_EI,2,'.','').'-'.number_format($item->TOT_EI,2,'.','')."\n");
         }
 
     }

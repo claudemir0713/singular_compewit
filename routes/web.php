@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\usuarioController;
 use App\Http\Controllers\cliente\clienteController;
 use App\Http\Controllers\cnab\cnabController;
 use App\Http\Controllers\contabilidade\contabilidadeController;
+use App\Http\Controllers\fechamento\fechamentoController;
 use App\Http\Controllers\financeiro\financeiroController;
 use App\Http\Controllers\folha\folhaController;
 use App\Http\Controllers\HomeController;
@@ -112,8 +113,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('contabilidade/sped/',[contabilidadeController::class,'sped'])->name('contabilidade.sped');
         Route::post('contabilidade/geraSped',[contabilidadeController::class,'geraSped'])->name('contabilidade.geraSped');
         Route::get('contabilidade/download/{arq}',[contabilidadeController::class,'download'])->name('contabilidade.download');
+    });
 
+    /********************************** Fechamento ***************************************************************/
+    Route::group(['namespace' => 'fechamento'], function () {
+        Route::get('fechamento',[fechamentoController::class,'listAll'])->name('fechamento.listAll');
+        Route::get('fechamento/fechamento',[fechamentoController::class,'fechamento'])->name('fechamento.fechamento');
+        Route::get('fechamento/produtoComFicha',[fechamentoController::class,'produtoComFicha'])->name('fechamento.produtoComFicha');
+        Route::post('fechamento/consutaProdutoComFicha',[fechamentoController::class,'consutaProdutoComFicha'])->name('fechamento.consutaProdutoComFicha');
 
+        Route::get('fechamento/importaHorasMlc',[fechamentoController::class,'importaHorasMlc'])->name('fechamento.importaHorasMlc');
+        Route::post('fechamento/gravaHorasMLC',[fechamentoController::class,'gravaHorasMLC'])->name('fechamento.gravaHorasMLC');
     });
 
 
