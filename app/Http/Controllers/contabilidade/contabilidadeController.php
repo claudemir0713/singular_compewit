@@ -7,6 +7,7 @@ use App\Helpers\Estoque;
 use App\Helpers\Sped;
 use App\Http\Controllers\Controller;
 use App\Models\singular_estoque_bloco_k;
+use App\Models\SPED_ESTOQUE_TEMP;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -101,9 +102,9 @@ class contabilidadeController extends Controller
             $valor      = floatval(str_replace(',','.',str_replace('.','',$linha[4])));
 
             try{
-                $atualiza = singular_estoque_bloco_k::find($id);
-                $atualiza->qtd = $qtd;
-                $atualiza->valor = $valor;
+                $atualiza = SPED_ESTOQUE_TEMP::where('SET_CODIGO',$id)->first();
+                $atualiza->SET_PRD_ESTOQUE = $qtd;
+                $atualiza->SET_PRD_CUSTO_VALORIZACAO = $valor;
                 $atualiza->save();
                 $retorno.="OK -> Produto $pro_cod"."\n";
             }catch(\Exception $e){
