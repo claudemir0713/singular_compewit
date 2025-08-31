@@ -19,6 +19,7 @@ class MenuSeeder extends Seeder
         menu::truncate();
         $menus=[
             [
+
                 'ordem'        =>'01.000'
                 , 'descricao'   =>'Cadastros'
                 , 'tipo'        =>'Título'
@@ -26,6 +27,7 @@ class MenuSeeder extends Seeder
                 , 'icone'       =>''
             ],
             [
+
                 'ordem'         =>'01.001'
                 , 'descricao'   =>'Menu'
                 , 'tipo'        =>'Link'
@@ -153,135 +155,134 @@ class MenuSeeder extends Seeder
                 , 'tipo'        =>'Link'
                 , 'rota'        =>'fechamento.importaHorasMlc'
                 , 'icone'       =>'far fa-clock'
-
             ],
-            // [
-            //     'ordem'         =>'99.000'
-            //     , 'descricao'   =>'Totvs Fin.Rec'
-            //     , 'tipo'        =>'Título'
-            //     , 'rota'        =>''
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.001'
-            //     , 'descricao'   =>'Receber por emissão'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_emissao.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.002'
-            //     , 'descricao'   =>'Receber aberto cliente'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_cliente.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.003'
-            //     , 'descricao'   =>'Receber aberto por Vcto'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_vcto.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.004'
-            //     , 'descricao'   =>'Receber aberto por Repr.'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_representante.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.005'
-            //     , 'descricao'   =>'Receber recebidas'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/proc_baixa.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.006'
-            //     , 'descricao'   =>'Cheques a receber'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/cheques/index.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.100'
-            //     , 'descricao'   =>'Totvs Fin.Pagar'
-            //     , 'tipo'        =>'Título'
-            //     , 'rota'        =>''
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.101'
-            //     , 'descricao'   =>'Pagar aberto por Forn.'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/por_fornecedor.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.102'
-            //     , 'descricao'   =>'Pagar aberto por Vcto.'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/por_vcto.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.103'
-            //     , 'descricao'   =>'Pagar pagas'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/proc_baixa.php'
-            //     , 'icone'       =>''
-            // ],
+            [
+                'ordem'         =>'99.000'
+                , 'descricao'   =>'Totvs Fin.Rec'
+                , 'tipo'        =>'Título'
+                , 'rota'        =>''
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.001'
+                , 'descricao'   =>'Receber por emissão'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_emissao.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.002'
+                , 'descricao'   =>'Receber aberto cliente'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_cliente.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.003'
+                , 'descricao'   =>'Receber aberto por Vcto'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_vcto.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.004'
+                , 'descricao'   =>'Receber aberto por Repr.'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/por_representante.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.005'
+                , 'descricao'   =>'Receber recebidas'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/proc_baixa.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.006'
+                , 'descricao'   =>'Cheques a receber'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/cheques/index.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.100'
+                , 'descricao'   =>'Totvs Fin.Pagar'
+                , 'tipo'        =>'Título'
+                , 'rota'        =>''
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.101'
+                , 'descricao'   =>'Pagar aberto por Forn.'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/por_fornecedor.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.102'
+                , 'descricao'   =>'Pagar aberto por Vcto.'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/por_vcto.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.103'
+                , 'descricao'   =>'Pagar pagas'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_pagar/proc_baixa.php'
+                , 'icone'       =>''
+            ],
 
-            // [
-            //     'ordem'         =>'99.180'
-            //     , 'descricao'   =>'Totvs Fin.Caixa'
-            //     , 'tipo'        =>'Título'
-            //     , 'rota'        =>''
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.181'
-            //     , 'descricao'   =>'Caixa'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/conciliacao/index.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.200'
-            //     , 'descricao'   =>'Totvs Comercial'
-            //     , 'tipo'        =>'Título'
-            //     , 'rota'        =>''
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.201'
-            //     , 'descricao'   =>'Pedidos'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/pedidos/index.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.202'
-            //     , 'descricao'   =>'Histórico cliente'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/hist_cliente.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.203'
-            //     , 'descricao'   =>'Comissão Emitida'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/comissoes/proc_comissao_emitida.php'
-            //     , 'icone'       =>''
-            // ],
-            // [
-            //     'ordem'         =>'99.204'
-            //     , 'descricao'   =>'Comissão Gerada'
-            //     , 'tipo'        =>'LinkTotvs'
-            //     , 'rota'        =>'decorbras/restrito/financeiro/comissoes/proc_comissao_gerada.php'
-            //     , 'icone'       =>''
-            // ],
+            [
+                'ordem'         =>'99.180'
+                , 'descricao'   =>'Totvs Fin.Caixa'
+                , 'tipo'        =>'Título'
+                , 'rota'        =>''
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.181'
+                , 'descricao'   =>'Caixa'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/conciliacao/index.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.200'
+                , 'descricao'   =>'Totvs Comercial'
+                , 'tipo'        =>'Título'
+                , 'rota'        =>''
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.201'
+                , 'descricao'   =>'Pedidos'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/pedidos/index.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.202'
+                , 'descricao'   =>'Histórico cliente'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/contas_receber/hist_cliente.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.203'
+                , 'descricao'   =>'Comissão Emitida'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/comissoes/proc_comissao_emitida.php'
+                , 'icone'       =>''
+            ],
+            [
+                'ordem'         =>'99.204'
+                , 'descricao'   =>'Comissão Gerada'
+                , 'tipo'        =>'LinkTotvs'
+                , 'rota'        =>'decorbras/restrito/financeiro/comissoes/proc_comissao_gerada.php'
+                , 'icone'       =>''
+            ],
 
         ];
         // dd($menus);
