@@ -114,7 +114,8 @@ class contabilidadeController extends Controller
         return response()->json(($retorno));
 
     }
-    public function geraSped(Request $request){
+    public function geraSped(Request $request)
+    {
         $dataI  = $request->dtI;
         $dataF  = $request->dtF;
         $arquivo = 'Sped'.$dataI.'-'.$dataF.'.txt';

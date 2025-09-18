@@ -216,7 +216,12 @@ class Sped {
 
     public static function estoqueK($dataI,$dataF){
         // $EST = singular_estoque_bloco_k::where('qtd','>=',0)->where('data','>=',$dataI)->where('data','<=',$dataF)->get();
-        $EST = SPED_ESTOQUE_TEMP::where('SET_PRD_ESTOQUE','>=',0)->where('SET_PERIODO','>=',$dataI)->where('SET_PERIODO','<=',$dataF)->get();
+        $EST = SPED_ESTOQUE_TEMP::leftJoin('PRODUTOS','PRODUTOS.PRD_CODIGO','SPED_ESTOQUE_TEMP.PRD_CODIGO')
+                                ->where('SET_PRD_ESTOQUE','>=',0)
+                                ->where('SET_PERIODO','>=',$dataI)
+                                ->where('SET_PERIODO','<=',$dataF)
+                                ->whereIn('PRD_TIPO_PRODUTO',['01','04'])
+                                ->get();
         return $EST;
     }
     public static function estoque($dataI,$dataF){
@@ -243,6 +248,7 @@ class Sped {
                 ->where('SET_PERIODO','>=',$dataI)
                 ->where('SET_PERIODO','<=',$dataF)
                 ->where('SET_PRD_ESTOQUE','>=',0)
+                ->whereIn('PRD_TIPO_PRODUTO',['01','04'])
                 ->get([
                     db::raw("SPED_ESTOQUE_TEMP.PRD_CODIGO as prd_codigo")
                     ,db::raw("SPED_ESTOQUE_TEMP.PRD_DESCRICAO as prd_descricao")
