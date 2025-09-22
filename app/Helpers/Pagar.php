@@ -8,31 +8,56 @@ use Illuminate\Support\Facades\DB;
 
 class Pagar {
     public static function pagar($dataI,$dataF,$forencedor,$tipo) {
-        $filtros = [];
-        $forencedor    = " AND CLIENTE LIKE '$forencedor%'";
         if($dataI){
-            $filtros[]=['CON_DT_VENCIMENTO','>=',$dataI];
+            $dataI = " AND CON_DT_VENCIMENTO >= '$dataI'";
+        }else{
+            $dataI ='';
         };
         if($dataF){
-            $filtros[]=['CON_DT_VENCIMENTO','<=',$dataF];
-        };
+            $dataF = " AND CON_DT_VENCIMENTO <= '$dataF'";
+        }else{
+            $dataF ='';
+        }
         if($forencedor){
-            $filtros[]=['PARTICIPANTE.PART_NOME','like','%'.$forencedor.'%'];
-        };
-
+            $forencedor = " AND .PART_NOME like '%$forencedor%'";
+        }else{
+            $forencedor ='';
+        }
         if($tipo){
-            $filtros[]=['RIGHT(TRIM(CON_NUMERO),2)','in','('.$tipo.')'];
+            if($tipo=='PD'){
+                $tipo = " AND RIGHT(TRIM(CON_NUMERO),2) IN ('PD','CH')";
+            }elseif($tipo!='PD'){
+                $tipo = " AND RIGHT(TRIM(CON_NUMERO),2) NOT IN ('PD','CH')";
+            }
+        }else{
+            $tipo = '';
+        }
+        $sql="
+            SELECT
+                CON_NUMERO
+                ,  CON_SEQUENCIA
+                ,  CON_DT_INCLUSAO
+                ,  CON_DT_VENCIMENTO
+                ,  CON_VALOR_ORIGINAL
+                ,  CON_VALOR_JUROS
+                ,  CON_VALOR_MULTA
+                ,  CON_VALOR_DESCONTO
+                ,  PART_NOME
 
-        };
-        // dd($filtros);
-        // $pagar = FIN_CONTAS::leftJoin('PARTICIPANTE','PARTICIPANTE.PART_CLIENTE_CODIGO','FIN_CONTAS.ENT_CODIGO')
-        //                 ->where($filtros)
-        //                 ->where('CON_TIPO',0)
-        //                 ->whereIn('CON_SITUACAO',[0,1])
-        //                 ->get([
+            FROM  FIN_CONTAS
+            LEFT JOIN  PARTICIPANTE  ON  PARTICIPANTE.PART_CODIGO  =  FIN_CONTAS.PART_CODIGO
 
-        //                 ]);
-        // return $pagar;
+            WHERE CON_TIPO  = 1
+            AND  CON_PREVISAO  = 0
+            AND  CON_SITUACAO  IN (0, 1)
+            $dataI
+            $dataF
+            $forencedor
+            $tipo
+        ";
+        $pagar = db::connection(env('APP_NAME'))->select($sql);
+        return $pagar;
+
     }
 
 
