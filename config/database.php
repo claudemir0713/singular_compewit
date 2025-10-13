@@ -64,7 +64,7 @@ return [
         ],
         'Compewit' => [
             'driver'   => 'firebird',
-            'host'     => '138.204.146.9',
+            'host'     => '127.0.0.1',
             'port'     => '3050',
             'database' => 'C:\Singular\BD\COMPEWIT.SIN',
             'username' => 'SYSDBA',
@@ -75,7 +75,7 @@ return [
 
         // 'singular' => [
         //     'driver'   => 'firebird',
-        //     'host'     => env('DB_HOST','192.168.0.244'),
+        //     'host'     => env('DB_HOST','127.0.0.1'),
         //     'port'     => env('DB_PORT','3050'),
         //     'database' => env('DB_DATABASE', 'forge'),
         //     'username' => env('DB_USERNAME', 'forge'),
